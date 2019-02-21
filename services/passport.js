@@ -25,15 +25,18 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser);
-        } else {
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+      // User.findOne({ googleId: profile.id }).then(existingUser => {
+      //   if (existingUser) {
+      //     done(null, existingUser);
+      //   } else {
+      //     new User({ googleId: profile.id })
+      //       .save()
+      //       .then(user => done(null, user));
+      //   }
+      // });
+      user = new User({ googleId: profile.id });
+      console.log(user);
+      done(null, user);
     }
   )
 );
