@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import Payment from "../services/Payment";
+
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
@@ -16,13 +18,13 @@ class Header extends Component {
           </li>
         );
       default:
-        return (
-          <li className="nav-item">
+        return [
+          <li key="3" className="nav-item">
             <a href="/api/logout" className="nav-link">
               Logout
             </a>
           </li>
-        );
+        ];
     }
   }
 
@@ -52,8 +54,10 @@ class Header extends Component {
   }
 }
 
+// set the auth state on the props.
 function mapStateToProps({ auth }) {
   return { auth };
 }
 
+// update the state with the new auth
 export default connect(mapStateToProps)(Header);
