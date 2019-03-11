@@ -5,8 +5,8 @@ import * as actions from "../actions";
 
 import Header from "./Layout/Header";
 import Landing from "./Layout/Landing";
-const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
+import AdminDashboard from "./Layout/AdminDashboard";
+import QuestionNew from "./questions/QuestionNew";
 
 class App extends Component {
   componentDidMount() {
@@ -18,10 +18,10 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Header />
-          <div className="container">
+          <div className="container-fluid">
             <Route exact path="/" component={Landing} />
-            <Route exact path="/surveys" component={Dashboard} />
-            <Route path="/survey/new" component={SurveyNew} />
+            <Route exact path="/admin-dashboard" component={AdminDashboard} />
+            <Route path="/question/new" component={QuestionNew} />
           </div>
         </div>
       </BrowserRouter>

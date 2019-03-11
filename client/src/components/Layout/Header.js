@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Payment from "../services/Payment";
-
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
@@ -30,11 +28,11 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand navbar-light bg-light mb-3">
+      <nav className="navbar navbar-expand navbar-light border-bottom border-success ">
         <div className="container">
           <Link
-            to={this.props.auth ? "/surveys" : "/"}
-            className="navbar-brand"
+            to={this.props.auth ? "/admin-dashboard" : "/"}
+            className="navbar-brand "
           >
             CONFEZEP
           </Link>
