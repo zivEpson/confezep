@@ -1,9 +1,12 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 import questionField from "./questionField";
 import formFields from "./formFields";
+import { actionChange } from "../../../actions";
+import { ADMIN_HOME } from "../../Layout/actionTypes";
 
 class QuestionForm extends Component {
   renderFields() {
@@ -28,12 +31,12 @@ class QuestionForm extends Component {
         <form onSubmit={this.props.handleSubmit(this.props.onQuestionSubmit)}>
           {this.renderFields()}
           <div className="text-center">
-            <Link
-              to="/admin-dashboard"
+            <button
+              onClick={() => this.props.actionChange(ADMIN_HOME)}
               className="btn btn-outline-secondary mr-3"
             >
               Cancel
-            </Link>
+            </button>
             <button
               className="btn btn-outline-success text-center"
               type="submit"
@@ -58,6 +61,11 @@ function validate(values) {
 
   return errors;
 }
+
+QuestionForm = connect(
+  null,
+  { actionChange }
+)(QuestionForm);
 
 export default reduxForm({
   validate,

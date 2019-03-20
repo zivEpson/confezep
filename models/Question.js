@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const questionSchema = new Schema({
   title: String,
-  questionBody: String,
+  body: String,
   answer: String,
   dateCreated: Date,
   dateModified: Date,

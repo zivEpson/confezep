@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import formFields from "./formFields";
-import * as actions from "../../actions";
+import * as actions from "../../../actions";
+import DBResponsePopUp from "../../Layout/DBResponsePopUp";
 
 class QuestionFormReview extends Component {
   reviewFields() {
@@ -35,6 +36,8 @@ class QuestionFormReview extends Component {
           >
             Submit Question
           </button>
+
+          <DBResponsePopUp />
         </div>
       </div>
     );
@@ -45,6 +48,10 @@ class QuestionFormReview extends Component {
 function mapStateToProps(state) {
   return { formValues: state.form.questionForm.values };
 }
+
+// when commited a pop up should tell the user if the question saved successfuly
+// on the popup there should be ok button that will cal the navAction to return
+// to the base administrator page.
 
 export default connect(
   mapStateToProps,

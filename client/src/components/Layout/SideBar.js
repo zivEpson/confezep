@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import "./SideBar.css";
-import { ADD_QUESTION, SHOW_QUESTIONS } from "./actionTypes";
+import { ADD_QUESTION, SHOW_QUESTIONS, ADMIN_HOME } from "./actionTypes";
 
 class SideBar extends Component {
   render() {
@@ -13,6 +12,14 @@ class SideBar extends Component {
         <div className="col mt-3">
           <nav className="nav flex-column">
             <ul className="navbar-nav">
+              <li className="nav-item">
+                <button
+                  className="nav-link btn btn-link text-dark"
+                  onClick={() => this.props.actionChange(ADMIN_HOME)}
+                >
+                  Home
+                </button>
+              </li>
               <span>Questions</span>
               <li className="nav-item sidebar-nav-item">
                 <button
@@ -27,7 +34,7 @@ class SideBar extends Component {
                   className="nav-link btn btn-link text-muted"
                   onClick={() => this.props.actionChange(SHOW_QUESTIONS)}
                 >
-                  Show Questions
+                  Find Questions
                 </button>
               </li>
             </ul>

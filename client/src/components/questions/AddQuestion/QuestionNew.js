@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { reduxForm } from "redux-form";
+
 import QuestionForm from "./QuestionForm";
 import QuestionFormReview from "./QuestionFormReview";
-import { reduxForm } from "redux-form";
 
 class QuestionNew extends Component {
   state = {
@@ -28,8 +29,6 @@ class QuestionNew extends Component {
   }
 }
 
-// export default reduxForm({
-//   form: "questionForm"
-// })(QuestionNew);
-
-export default QuestionNew;
+export default reduxForm({
+  form: "questionForm"
+})(QuestionNew);

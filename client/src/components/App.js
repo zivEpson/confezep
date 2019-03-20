@@ -6,7 +6,6 @@ import * as actions from "../actions";
 import Header from "./Layout/Header";
 import Landing from "./Layout/Landing";
 import AdminDashboard from "./Layout/AdminDashboard";
-import QuestionNew from "./questions/QuestionNew";
 
 class App extends Component {
   componentDidMount() {
@@ -21,7 +20,6 @@ class App extends Component {
           <div className="container-fluid">
             <Route exact path="/" component={Landing} />
             <Route exact path="/admin-dashboard" component={AdminDashboard} />
-            <Route path="/question/new" component={QuestionNew} />
           </div>
         </div>
       </BrowserRouter>

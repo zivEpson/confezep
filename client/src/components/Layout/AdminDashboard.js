@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import QuestionList from "../questions/QuestionList";
+import FilterQuestionsPanel from "../questions/FilterQuestions/FilterQuestionsPanel";
 import SideBar from "./SideBar";
-import QuestionNew from "../questions/QuestionNew";
+import QuestionNew from "../questions/AddQuestion/QuestionNew";
+import AdminHOme from "./AdminHome";
 
-import { ADD_QUESTION, SHOW_QUESTIONS } from "./actionTypes";
+import { ADD_QUESTION, SHOW_QUESTIONS, ADMIN_HOME } from "./actionTypes";
 
 class AdminDashboard extends Component {
   renderContent() {
@@ -13,9 +14,11 @@ class AdminDashboard extends Component {
       case ADD_QUESTION:
         return <QuestionNew />;
       case SHOW_QUESTIONS:
-        return <QuestionList />;
+        return <FilterQuestionsPanel />;
+      case ADMIN_HOME:
+        return <AdminHOme />;
       default:
-        return;
+        return <AdminHOme />;
     }
   }
 
