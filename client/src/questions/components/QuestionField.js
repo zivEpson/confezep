@@ -1,6 +1,11 @@
 import React from "react";
 
-export default ({ input, label, placeHolder, meta: { error, touched } }) => {
+export const QuestionForm = ({
+  input,
+  label,
+  placeHolder,
+  meta: { error, touched }
+}) => {
   return (
     <div className="form-group">
       <label>{label}</label>
@@ -11,3 +16,5 @@ export default ({ input, label, placeHolder, meta: { error, touched } }) => {
     </div>
   );
 };
+
+export default QuestionForm;

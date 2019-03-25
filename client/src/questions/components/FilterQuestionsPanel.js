@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import FilterQuestionsForm from "./FilterQuestionsForm";
-import QuestionList from "./QuestionList";
+
+import FilterQuestionsFormContainer from "../containers/FilterQuestionsFormContainer";
+import QuestionListContainer from "../containers/QuestionListContainer";
 
 class FilterQuestionsPanel extends Component {
   render() {
     return (
       <div className="mt-4">
-        <FilterQuestionsForm />
+        <FilterQuestionsFormContainer />
         <hr className="my-5" />
-        <QuestionList />
+        <QuestionListContainer />
       </div>
     );
   }

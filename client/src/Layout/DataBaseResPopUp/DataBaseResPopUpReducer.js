@@ -1,4 +1,4 @@
-import { MODAL_RESPONSE } from "../actions/types";
+import { DB_POPUP_RESPONSE } from "../../actions/types";
 
 const defaultState = {
   show: false,
@@ -10,8 +10,7 @@ const defaultState = {
 
 export default function(state = defaultState, action) {
   switch (action.type) {
-    // update the state with user info
-    case MODAL_RESPONSE:
+    case DB_POPUP_RESPONSE:
       return action.payload;
     default:
       return state;

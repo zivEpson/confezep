@@ -3,7 +3,7 @@ Indentation on nav-items
 one line text
 */
 .sidebar-nav-item {
-  padding-left: 26px !important;
+  padding-left: 12px !important;
   white-space: nowrap;
 }
 
