@@ -1,43 +1,87 @@
 import React, { Component } from "react";
-import { reduxForm } from "redux-form";
 import { connect } from "react-redux";
+import queryString from "query-string";
 
-import { submitQuestion } from "../questionAction";
-import QuestionFormContainer from "./QuestionFormContainer";
-import QuestionFormReviewContainer from "./QuestionFormReviewContainer";
+import { ConnectedCreateQuestionForm } from "./ReduxConnectedQuestion";
+import { submitQuestion, getQuestion, resetQuestions } from "../questionAction";
+import { isEmpty } from "../../utils";
+import QuestionFromReview from "../components/QuestionFormReview";
 
+/**
+ QuestionContainer can be called on two scanarios with/out question id as        param. When param is sent, then the intilaValues of the question form should    be initilized
+ */
 class QuestionContainer extends Component {
   state = {
-    showFormReview: false
+    showFormReview: false,
+    isViewMode: false
   };
 
+  /*if question id param exist then fetch the question from the DB*/
+  componentDidMount() {
+    const { params } = this.props.match;
+    if (!isEmpty(params)) {
+      const mode = queryString.parse(this.props.location.search);
+      this.setState({ isViewMode: mode["mode"] === "view" });
+      this.props.getQuestion(params.id);
+    } else {
+      this.props.resetQuestions();
+    }
+  }
+
   renderContent() {
-    console.log(this.props);
-    if (this.state.showFormReview) {
+    if (!this.state.showFormReview) {
       return (
-        <QuestionFormReviewContainer
+        <ConnectedCreateQuestionForm
+          initialValues={this.props.initialValues}
+          onSubmit={() => {
+            this.setState({ showFormReview: true });
+          }}
+          isViewMode={this.state.isViewMode}
+          onCancel={this.props.history.goBack}
+        />
+      );
+    } else {
+      return (
+        <QuestionFromReview
+          formValues={this.props.formValues}
           submitQuestion={this.props.submitQuestion}
+          onReturn={this.props.history.goBack}
+          onCancel={() => {
+            this.setState({ showFormReview: false });
+          }}
+          isViewMode={this.state.isViewMode}
         />
       );
     }
-    return (
-      <QuestionFormContainer
-        onQuestionSubmit={() => this.setState({ showFormReview: true })}
-      />
-    );
   }
 
   render() {
-    return <div className="mt-2">{this.renderContent()}</div>;
+    return <div>{this.renderContent()}</div>;
   }
 }
 
-QuestionContainer = connect(
-  null,
-  { submitQuestion }
-)(QuestionContainer);
+/**
+ * set this.props.formValues for QuestionFromReview
+ * state.form.questionForm can be "undefined" (before form submmition)
+ * in this case 'questionForm.values' will cause a null exception
+ * @param {*} state
+ */
+const getFormValues = state => {
+  if (typeof state.form.questionForm === "undefined") {
+    return {};
+  } else {
+    return state.form.questionForm.values;
+  }
+};
 
-export default QuestionContainer;
-// export default reduxForm({
-//   form: "questionForm"
-// })(QuestionContainer);
+function mapStateToProps(state) {
+  return {
+    formValues: getFormValues(state),
+    initialValues: state.questions
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { submitQuestion, getQuestion, resetQuestions }
+)(QuestionContainer);

@@ -1,13 +1,13 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { default as Header } from "./Layout/Header/HeaderContainer";
 import Landing from "./Layout/Landing";
-import { default as Question } from "./questions/containers/QuestionContainer";
-import { default as SideBar } from "./Layout/SideBar/SideBarContainer";
-import { default as QuestionsPanel } from "./questions/components/FilterQuestionsPanel";
-import AdminHome from "./Layout/AdminHome";
 import NotFound from "./Layout/NotFound";
+import { default as SideBar } from "./Layout/SideBar/SideBarContainer";
+import { default as QuestionsPanel } from "./questions/containers/FilterQuestionsPanel";
+import AdminHome from "./Layout/AdminHome";
+import { default as Question } from "./questions/containers/QuestionContainer";
 
 const Routes = () => {
   const showAdminSideBar = () => {
@@ -29,22 +29,30 @@ const Routes = () => {
           <div className="row">
             {showAdminSideBar()}
             <div className="col">
-              <Route exact path="/" component={Landing} />
-              <Route
-                exact
-                path="/admin-dashboard/new-question"
-                component={Question}
-              />
-              <Route
-                exact
-                path="/admin-dashboard/question-panel"
-                component={QuestionsPanel}
-              />
-              <Route
-                exact
-                path="/admin-dashboard/admin-home"
-                component={AdminHome}
-              />
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route
+                  exact
+                  path="/admin-dashboard/new-question"
+                  component={Question}
+                />
+                <Route
+                  exact
+                  path="/admin-dashboard/questions/:id"
+                  component={Question}
+                />
+                <Route
+                  exact
+                  path="/admin-dashboard/question-panel"
+                  component={QuestionsPanel}
+                />
+                <Route
+                  exact
+                  path="/admin-dashboard/admin-home"
+                  component={AdminHome}
+                />
+                <Route component={NotFound} />
+              </Switch>
             </div>
           </div>
         </div>

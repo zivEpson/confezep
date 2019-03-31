@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import DataBaseResPopUp from "../components/DataBaseResPopUp";
+import DataBaseResPopUp from "./DataBaseResPopUp";
 
 class DataBaseResPopUpContainer extends Component {
   render() {
@@ -13,13 +13,13 @@ class DataBaseResPopUpContainer extends Component {
         body={body}
         textColor={textColor}
         borderColor={borderColor}
+        onReturn={this.props.onReturn}
       />
     );
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state.DBPopUp);
   return { DBPopUp: state.DBPopUp };
 }
 

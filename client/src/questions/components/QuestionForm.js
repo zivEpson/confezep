@@ -6,17 +6,24 @@ import { Link } from "react-router-dom";
 import QuestionField from "./QuestionField";
 import FormFields from "../constants/FormFields";
 
-export const QuestionForm = ({ handleSubmit, onSubmit }) => {
+const QuestionForm = ({
+  handleSubmit,
+  onSubmit,
+  isViewMode,
+  submitting,
+  onCancel
+}) => {
   const renderFields = () => {
-    return _.map(FormFields, ({ key, label, name, placeHolder }) => {
+    return _.map(FormFields, ({ key, label, type, name, placeHolder }) => {
       return (
         <Field
           key={key}
           component={QuestionField}
-          type="text"
+          type={type}
           name={name}
           placeHolder={placeHolder}
           label={label}
+          isViewMode={isViewMode}
         />
       );
     });
@@ -27,13 +34,18 @@ export const QuestionForm = ({ handleSubmit, onSubmit }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderFields()}
         <div className="text-center">
-          <Link
-            className="btn btn-outline-warning text-center"
-            to="/admin-dashboard"
+          <button
+            onClick={onCancel}
+            className="btn btn-outline-warning text-center mr-2"
+            type="button"
           >
             Cancel
-          </Link>
-          <button className="btn btn-outline-success text-center" type="submit">
+          </button>
+          <button
+            disabled={submitting}
+            className="btn btn-outline-success text-center "
+            type="submit"
+          >
             Next
           </button>
         </div>

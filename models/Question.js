@@ -7,7 +7,7 @@ const questionSchema = new Schema({
   answer: String,
   dateCreated: Date,
   dateModified: Date,
-  _user: { type: Schema.Types.ObjectId, ref: "User" }
+  _user: { type: Schema.Types.ObjectId, ref: "users" }
 });
 
 mongoose.model("question", questionSchema);

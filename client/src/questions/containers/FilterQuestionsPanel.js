@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 
-import FilterQuestionsFormContainer from "../containers/FilterQuestionsFormContainer";
-import QuestionListContainer from "../containers/QuestionListContainer";
+import FilterQuestionsFormContainer from "./FilterQuestionsFormContainer";
+import QuestionListContainer from "./QuestionListContainer";
 
+/**
+ * Class to display find questions panel
+ */
 class FilterQuestionsPanel extends Component {
   render() {
     return (

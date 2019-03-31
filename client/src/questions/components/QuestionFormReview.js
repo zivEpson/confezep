@@ -2,9 +2,15 @@ import React from "react";
 import _ from "lodash";
 
 import FormFields from "../constants/FormFields";
-import DataBaseResPopUpContainer from "../../Layout/DataBaseResPopUp/containers/DataBaseResPopUpContainer";
+import DataBaseResPopUpContainer from "../../Layout/DataBaseResPopUp/DataBaseResPopUpContainer";
 
-export const QuestionFormReview = ({ submitQuestion, formValues }) => {
+export const QuestionFormReview = ({
+  submitQuestion,
+  formValues,
+  onReturn,
+  onCancel,
+  isViewMode
+}) => {
   const reviewFields = () => {
     return _.map(FormFields, ({ name, label }) => {
       return (
@@ -16,16 +22,27 @@ export const QuestionFormReview = ({ submitQuestion, formValues }) => {
     });
   };
 
+  const renderPopUp = () => {
+    if (!isViewMode) {
+      return <DataBaseResPopUpContainer onReturn={onReturn} />;
+    }
+  };
+
   return (
     <div>
       <div className="card">{reviewFields()}</div>
-      <button
-        onClick={() => submitQuestion(formValues)}
-        className="btn btn-outline-success"
-      >
-        Submit Question
-      </button>
-      <DataBaseResPopUpContainer />
+      <div className="text-center mt-3">
+        <button onClick={onCancel} className="btn btn-outline-warning mr-2">
+          Cancel
+        </button>
+        <button
+          onClick={() => submitQuestion(formValues)}
+          className="btn btn-outline-success"
+        >
+          Submit Question
+        </button>
+      </div>
+      {renderPopUp()}
     </div>
   );
 };

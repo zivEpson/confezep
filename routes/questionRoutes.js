@@ -21,6 +21,9 @@ module.exports = app => {
     }
   });
 
+  /**
+   * fetch questions by filter params
+   */
   app.get("/api/questions", async (req, res) => {
     const query = buildQueryObject(req);
 
@@ -28,7 +31,10 @@ module.exports = app => {
       res.sendStatus(400);
     } else {
       try {
-        const questions = await Question.find(query);
+        const questions = await Question.find(query)
+          .populate("_user")
+          .exec();
+        console.log(questions);
         res.send(questions);
       } catch (err) {
         res.sendStatus(500);
@@ -36,7 +42,44 @@ module.exports = app => {
     }
   });
 
-  // Helpers
+  /**
+   * get a single question by id
+   */
+  app.get("/api/questions/:id", async (req, res) => {
+    if (req.params.id === null) {
+      res.sendStatus(400);
+    } else {
+      try {
+        const question = await Question.findById({
+          _id: req.params.id
+        })
+          .populate("_user")
+          .exec();
+        res.send(question);
+      } catch (err) {
+        res.sendStatus(500);
+      }
+    }
+  });
+
+  /**
+   * delete a single question by id
+   */
+  app.delete("/api/questions/:id", async (req, res) => {
+    console.log(req.params.id);
+    if (req.params.id === null) {
+      res.sendStatus(400);
+    } else {
+      try {
+        const ans = await Question.findByIdAndDelete({ _id: req.params.id });
+        res.sendStatus(200);
+      } catch (err) {
+        res.sendStatus(500);
+      }
+    }
+  });
+
+  /**********************Helpers**************************************/
   function buildQueryObject(req) {
     const { title } = req.query;
 

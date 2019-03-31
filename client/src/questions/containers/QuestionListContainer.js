@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
-import { CREATE_QUESTION } from "../constants/QuestionActionTypes";
 import QuestionList from "../components/QuestionList";
+import { deleteQuestion } from "../questionAction";
+import {
+  CREATE_QUESTION,
+  UPDATE_QUESTION,
+  DELETE_QUESTION,
+  VIEW_QUESTION
+} from "../constants/QuestionActionTypes";
 
 class QuestionListContainer extends Component {
   state = {
@@ -11,16 +17,51 @@ class QuestionListContainer extends Component {
     actionType: null
   };
 
+  // Set the question action when chosen (add,update,view,delete)
   questionAction = type => {
     this.setState({ actionType: type });
   };
 
+  // according to the question aciton an operation is created
   applyQuestionAction = () => {
     switch (this.state.actionType) {
       case null:
         return;
       case CREATE_QUESTION:
-        return <Redirect push to="/admin-dashboard/new-question" />;
+        return <Redirect push to={`/admin-dashboard/new-question`} />;
+      case UPDATE_QUESTION:
+        if (this.state.chosenQuestion !== null) {
+          return (
+            <Redirect
+              push
+              to={`/admin-dashboard/questions/${
+                this.state.chosenQuestion
+              }?mode=update`}
+            />
+          );
+        }
+        break;
+      case VIEW_QUESTION:
+        if (this.state.chosenQuestion !== null) {
+          console.log(this.props);
+          return (
+            <Redirect
+              push
+              to={`/admin-dashboard/questions/${
+                this.state.chosenQuestion
+              }?mode=view`}
+            />
+          );
+        }
+        break;
+      case DELETE_QUESTION:
+        if (this.state.chosenQuestion !== null) {
+          this.props.deleteQuestion(this.state.chosenQuestion);
+        }
+        break;
+      // should validate the question should be chosen
+      default:
+        return;
     }
   };
 
@@ -31,7 +72,6 @@ class QuestionListContainer extends Component {
           questions={this.props.questions}
           setChosenQuestion={questionId => {
             this.setState({ chosenQuestion: questionId });
-            console.log(questionId);
           }}
           questionAction={type => this.questionAction(type)}
         />
@@ -41,11 +81,25 @@ class QuestionListContainer extends Component {
   }
 }
 
+/**
+ * Add question and question list share the same reducer,
+ * when returned from add question, the reducer state is {}
+ * question list expect [].
+ * @param {*} questions
+ */
+function setQuestionsList(questions) {
+  if (Array.isArray(questions)) {
+    return questions;
+  } else {
+    return [];
+  }
+}
+
 function mapStateToProps(state) {
-  return { questions: state.questions };
+  return { questions: setQuestionsList(state.questions) };
 }
 
 export default connect(
   mapStateToProps,
-  null
+  { deleteQuestion }
 )(QuestionListContainer);

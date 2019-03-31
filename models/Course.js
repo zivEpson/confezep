@@ -7,7 +7,7 @@ const courseSchema = new Schema({
   dateCreated: Date,
   dateModified: Date,
   _questionsIds: [{ type: Schema.Types.ObjectId, ref: "Question" }],
-  _user: { type: Schema.Types.ObjectId, ref: "User" }
+  _user: { type: Schema.Types.ObjectId, ref: "users" }
 });
 
 mongoose.model("course", courseSchema);

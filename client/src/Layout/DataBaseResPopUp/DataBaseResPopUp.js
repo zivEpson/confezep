@@ -6,7 +6,8 @@ export const DataBaseResPopUp = ({
   header,
   body,
   textColor,
-  borderColor
+  borderColor,
+  onReturn
 }) => {
   return (
     <>
@@ -19,7 +20,11 @@ export const DataBaseResPopUp = ({
             <p className={textColor}>{body}</p>
           </Modal.Body>
           <Modal.Footer>
-            <button type="button" className="btn btn-outline-secondary mx-auto">
+            <button
+              type="button"
+              className="btn btn-outline-secondary mx-auto"
+              onClick={onReturn}
+            >
               Return
             </button>
           </Modal.Footer>

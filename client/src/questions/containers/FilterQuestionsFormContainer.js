@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 
 import { fetchQuestions } from "../questionAction";
 import FilterQuestionsForm from "../components/FilterQuestionsForm";
+import { validate } from "../components/Validations";
 
+/**
+ * container for the component which display the question filter panel
+ */
 class FilterQuestionsFormContainer extends Component {
   render() {
     return (
@@ -21,12 +25,7 @@ FilterQuestionsFormContainer = connect(
   { fetchQuestions }
 )(FilterQuestionsFormContainer);
 
-function validate(values) {
-  const errors = {};
-  return errors;
-}
-
 export default reduxForm({
   validate,
-  form: "questionForm"
+  form: "filterQuestionForm"
 })(FilterQuestionsFormContainer);
