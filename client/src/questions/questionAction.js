@@ -1,4 +1,6 @@
 import axios from "axios";
+
+import { setModalData, difference } from "../utils/utils";
 import {
   FETCH_QUESTIONS,
   DB_POPUP_RESPONSE,
@@ -14,7 +16,8 @@ import {
 export const fetchQuestions = values => async dispatch => {
   const res = await axios.get("/api/questions", {
     params: {
-      title: values["title"]
+      title: values["title"],
+      questionType: values["questionType"]
     }
   });
   dispatch({ type: FETCH_QUESTIONS, payload: res.data });
@@ -26,9 +29,22 @@ export const fetchQuestions = values => async dispatch => {
  *
  * @param {*} values
  */
-export const submitQuestion = values => async dispatch => {
-  const res = await axios.post("/api/questions", values);
-  dispatch({ type: DB_POPUP_RESPONSE, payload: setModalData(res) });
+export const submitQuestion = (values, initialValues) => async dispatch => {
+  let res;
+  // on create question initailValues are null
+  if (initialValues === null) {
+    res = await axios.post("/api/questions", values);
+    // on update question the delta is sent to be updated
+  } else {
+    res = await axios.put(
+      `/api/questions/${values._id}`,
+      difference(values, initialValues)
+    );
+  }
+  dispatch({
+    type: DB_POPUP_RESPONSE,
+    payload: setModalData(res, "Create Contact", "Contact was Created", false)
+  });
 };
 
 /**
@@ -37,9 +53,8 @@ export const submitQuestion = values => async dispatch => {
  * @param {Question Id} id
  */
 export const deleteQuestion = id => async dispatch => {
-  console.log(id);
-  const res = await axios.delete(`/api/questions/${id}`);
-  console.log(res);
+  await axios.delete(`/api/questions/${id}`);
+  dispatch({ type: RESET_QUESTIONS });
 };
 
 /**
@@ -58,21 +73,3 @@ export const getQuestion = id => async dispatch => {
 export const resetQuestions = () => async dispatch => {
   dispatch({ type: RESET_QUESTIONS });
 };
-
-/***************************helpers*************************** */
-
-/**
- * Set the modal popup parameters
- *
- * @param {*} res
- */
-function setModalData(res) {
-  const modalObject = {
-    show: true,
-    header: "Create Contact",
-    body: "Contact was created successfuly",
-    textColor: "text-success",
-    borderColor: "border border-success"
-  };
-  return modalObject;
-}

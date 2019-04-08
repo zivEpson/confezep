@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
+import { default as PopUp } from "../../Layout/DataBaseResPopUp/DataBaseResPopUpContainer";
 import QuestionList from "../components/QuestionList";
-import { deleteQuestion } from "../questionAction";
+import { deleteQuestion, resetQuestions } from "../questionAction";
+import {
+  resetPopUp,
+  createPopUp
+} from "../../Layout/DataBaseResPopUp/DataBaseResPopUpAction";
 import {
   CREATE_QUESTION,
   UPDATE_QUESTION,
@@ -16,6 +21,10 @@ class QuestionListContainer extends Component {
     chosenQuestion: null,
     actionType: null
   };
+
+  componentDidMount() {
+    this.props.resetPopUp();
+  }
 
   // Set the question action when chosen (add,update,view,delete)
   questionAction = type => {
@@ -65,6 +74,12 @@ class QuestionListContainer extends Component {
     }
   };
 
+  // on deleteion reset the popup and reload the page
+  onReturnFormDelete = () => {
+    this.props.resetPopUp();
+    // todo- try to use remote
+  };
+
   render() {
     return (
       <div>
@@ -101,5 +116,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { deleteQuestion }
+  { deleteQuestion, resetQuestions, resetPopUp, createPopUp }
 )(QuestionListContainer);

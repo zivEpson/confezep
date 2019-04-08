@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "http-proxy-middleware": "^0.19.1",
+    "prismjs": "^1.16.0",
     "query-string": "^6.4.2",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.5",
@@ -15,7 +16,9 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
+    "react-select": "^2.4.2",
     "react-stripe-checkout": "^2.6.3",
+    "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0"

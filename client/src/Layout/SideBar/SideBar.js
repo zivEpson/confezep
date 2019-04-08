@@ -34,6 +34,15 @@ export const SideBar = () => {
                 Find Questions
               </Link>
             </li>
+            <span>Users</span>
+            <li className="nav-item sidebar-nav-item">
+              <Link
+                className="nav-link text-muted"
+                to="/admin-dashboard/add-user"
+              >
+                Add User
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

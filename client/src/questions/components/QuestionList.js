@@ -51,8 +51,8 @@ export const QuestionList = ({
   };
 
   //set the question id as state, used when a question action is called
-  const onRowSelect = row => {
-    console.log(questions[0]._user);
+  const onRowSelect = (row, isSelected, e) => {
+    console.log(row);
     setChosenQuestion(row._id);
   };
 
@@ -66,7 +66,8 @@ export const QuestionList = ({
 
   const options = {
     noDataText: "Search for Questions",
-    btnGroup: QuestionListButtonGroup
+    btnGroup: QuestionListButtonGroup,
+    deleteRow: true
   };
 
   return (
@@ -83,6 +84,9 @@ export const QuestionList = ({
         <TableHeaderColumn dataField="title">Title</TableHeaderColumn>
         <TableHeaderColumn dataField="dateCreated" dataFormat={dateFormatter}>
           Date Created
+        </TableHeaderColumn>
+        <TableHeaderColumn dataField="questionType">
+          Question Type
         </TableHeaderColumn>
         <TableHeaderColumn dataField="_user" dataFormat={userFormatter}>
           Created By

@@ -1,10 +1,11 @@
 import _ from "lodash";
 import React from "react";
-import { Field } from "redux-form";
-import { Link } from "react-router-dom";
+import { Field, FieldArray } from "redux-form";
 
 import QuestionField from "./QuestionField";
 import FormFields from "../constants/FormFields";
+import RenderHints from "./RenderHints";
+import RenderCodeBlock from "./RenderCodeBlock";
 
 const QuestionForm = ({
   handleSubmit,
@@ -14,19 +15,35 @@ const QuestionForm = ({
   onCancel
 }) => {
   const renderFields = () => {
-    return _.map(FormFields, ({ key, label, type, name, placeHolder }) => {
-      return (
-        <Field
-          key={key}
-          component={QuestionField}
-          type={type}
-          name={name}
-          placeHolder={placeHolder}
-          label={label}
-          isViewMode={isViewMode}
-        />
-      );
-    });
+    return _.map(
+      FormFields,
+      ({ key, label, type, name, placeHolder, isArrayField }) => {
+        if (isArrayField) {
+          return (
+            <FieldArray
+              key={key}
+              name={name}
+              type={type}
+              placeHolder={placeHolder}
+              label={label}
+              component={name === "hints" ? RenderHints : RenderCodeBlock}
+            />
+          );
+        } else {
+          return (
+            <Field
+              key={key}
+              component={QuestionField}
+              type={type}
+              name={name}
+              placeHolder={placeHolder}
+              label={label}
+              isViewMode={isViewMode}
+            />
+          );
+        }
+      }
+    );
   };
 
   return (

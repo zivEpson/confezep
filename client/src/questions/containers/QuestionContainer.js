@@ -4,7 +4,7 @@ import queryString from "query-string";
 
 import { ConnectedCreateQuestionForm } from "./ReduxConnectedQuestion";
 import { submitQuestion, getQuestion, resetQuestions } from "../questionAction";
-import { isEmpty } from "../../utils";
+import { isEmpty } from "../../utils/utils";
 import QuestionFromReview from "../components/QuestionFormReview";
 
 /**
@@ -41,9 +41,11 @@ class QuestionContainer extends Component {
         />
       );
     } else {
+      console.log(this.props.formValues);
       return (
         <QuestionFromReview
           formValues={this.props.formValues}
+          initialValues={this.props.initialValues}
           submitQuestion={this.props.submitQuestion}
           onReturn={this.props.history.goBack}
           onCancel={() => {

@@ -7,6 +7,7 @@ export const DataBaseResPopUp = ({
   body,
   textColor,
   borderColor,
+  hasCancel,
   onReturn
 }) => {
   return (

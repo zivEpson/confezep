@@ -5,7 +5,14 @@ import DataBaseResPopUp from "./DataBaseResPopUp";
 
 class DataBaseResPopUpContainer extends Component {
   render() {
-    const { show, header, body, textColor, borderColor } = this.props.DBPopUp;
+    const {
+      show,
+      header,
+      body,
+      textColor,
+      borderColor,
+      hasCancel
+    } = this.props.DBPopUp;
     return (
       <DataBaseResPopUp
         show={show}
@@ -13,6 +20,7 @@ class DataBaseResPopUpContainer extends Component {
         body={body}
         textColor={textColor}
         borderColor={borderColor}
+        hasCancel={hasCancel}
         onReturn={this.props.onReturn}
       />
     );

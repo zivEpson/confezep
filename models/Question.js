@@ -5,6 +5,9 @@ const questionSchema = new Schema({
   title: String,
   body: String,
   answer: String,
+  questionType: String,
+  hints: [String],
+  bodyCode: [String],
   dateCreated: Date,
   dateModified: Date,
   _user: { type: Schema.Types.ObjectId, ref: "users" }

@@ -1,12 +1,14 @@
 import React from "react";
 
+import RFReactSelect from "../../utils/FromUtils/RFReactSelect";
+import { questionsTypes } from "../constants/QuestionTypes";
+
 export const QuestionField = ({
   input,
   label,
   placeHolder,
   type,
   isViewMode,
-  isFilterPanel,
   meta: { error, touched }
 }) => {
   const renderQuestionType = () => {
@@ -15,7 +17,7 @@ export const QuestionField = ({
         <input
           {...input}
           disabled={isViewMode}
-          className={"form-control" + (isFilterPanel ? " ml-2" : "")}
+          className={"form-control"}
           placeholder={placeHolder}
         />
       );
@@ -28,6 +30,8 @@ export const QuestionField = ({
           placeholder={placeHolder}
         />
       );
+    } else if (type === "select") {
+      return <RFReactSelect input={input} options={questionsTypes} />;
     }
   };
 

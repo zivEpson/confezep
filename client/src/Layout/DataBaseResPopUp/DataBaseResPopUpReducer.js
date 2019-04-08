@@ -1,4 +1,7 @@
-import { DB_POPUP_RESPONSE } from "../../actions/types";
+import {
+  DB_POPUP_RESPONSE,
+  RESET_DB_POPUP_RESPONSE
+} from "../../actions/types";
 
 const defaultState = {
   show: false,
@@ -12,6 +15,8 @@ export default function(state = defaultState, action) {
   switch (action.type) {
     case DB_POPUP_RESPONSE:
       return action.payload;
+    case RESET_DB_POPUP_RESPONSE:
+      return defaultState;
     default:
       return state;
   }

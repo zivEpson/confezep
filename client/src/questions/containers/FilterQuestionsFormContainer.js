@@ -15,6 +15,7 @@ class FilterQuestionsFormContainer extends Component {
       <FilterQuestionsForm
         handleSubmit={this.props.handleSubmit}
         onSubmit={this.props.fetchQuestions}
+        onClear={this.props.reset}
       />
     );
   }

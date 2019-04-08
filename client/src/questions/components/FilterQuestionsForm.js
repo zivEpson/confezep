@@ -4,27 +4,27 @@ import { Field } from "redux-form";
 
 import QuestionField from "./QuestionField";
 import FormFields from "../constants/FormFields";
-import { required } from "./Validations";
 
 /**
  * component which display the question filter panel
  *
  * @param {props} param
  */
-export const FilterQuestionsForm = ({ handleSubmit, onSubmit }) => {
+export const FilterQuestionsForm = ({ handleSubmit, onSubmit, onClear }) => {
   const renderFields = () => {
     return _.map(FormFields, ({ key, name, displayOnFilter, label, type }) => {
       // There are form fields shouldn't be displayed on filter panel
       if (displayOnFilter === true) {
         return (
-          <Field
-            key={key}
-            component={QuestionField}
-            type={type}
-            name={name}
-            label={label}
-            isFilterPanel={true}
-          />
+          <div key={key} className="col">
+            <Field
+              component={QuestionField}
+              type={type}
+              name={name}
+              label={label}
+              isFilterPanel={true}
+            />
+          </div>
         );
       }
     });
@@ -33,11 +33,8 @@ export const FilterQuestionsForm = ({ handleSubmit, onSubmit }) => {
   return (
     <div>
       <div>
-        <form
-          className="form-inline"
-          onSubmit={handleSubmit(value => onSubmit(value))}
-        >
-          {renderFields()}
+        <form onSubmit={handleSubmit(value => onSubmit(value))}>
+          <div className="form-row">{renderFields()}</div>
           <button className="btn btn-light" type="submit">
             Filter
           </button>
