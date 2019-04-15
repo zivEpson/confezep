@@ -1,7 +1,7 @@
 import React from "react";
 import { Field } from "redux-form";
 
-import QuestionField from "./QuestionField";
+import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
 
 const RenderCodeBlock = ({
   name,
@@ -10,6 +10,7 @@ const RenderCodeBlock = ({
   type,
   isViewMode,
   fields,
+  selectOptions,
   meta: { error }
 }) => {
   return (
@@ -27,7 +28,6 @@ const RenderCodeBlock = ({
         <button
           className="btn btn-outline-secondary"
           type="button"
-          title="Remove Hobby"
           onClick={() => fields.pop()}
         >
           <i className="far fa-trash-alt" />
@@ -37,11 +37,12 @@ const RenderCodeBlock = ({
       {fields.map((hints, index) => (
         <div key={index}>
           <Field
-            component={QuestionField}
+            component={FormFieldByType}
             type={type}
             name={hints}
             placeHolder={placeHolder}
             isViewMode={isViewMode}
+            selectOptions={selectOptions}
           />
         </div>
       ))}

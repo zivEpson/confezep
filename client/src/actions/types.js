@@ -1,4 +1,5 @@
 export const FETCH_USER = "fetch_user";
+export const FETCH_USER_AUTH = "fetch_user_auth";
 export const FETCH_QUESTIONS = "fetch_questions";
 export const LOAD_QUESTION = "load_question";
 export const RESET_QUESTIONS = "load_question";

@@ -9,6 +9,7 @@ import { default as QuestionsPanel } from "./questions/containers/FilterQuestion
 import AdminHome from "./Layout/AdminHome";
 import { default as Question } from "./questions/containers/QuestionContainer";
 import { default as Users } from "./users/container/UserContainer";
+import { default as UserPanel } from "./users/container/UserPanelContainer";
 
 const Routes = () => {
   const showAdminSideBar = () => {
@@ -56,6 +57,11 @@ const Routes = () => {
                   exact
                   path="/admin-dashboard/add-user"
                   component={Users}
+                />
+                <Route
+                  exact
+                  path="/admin-dashboard/user-panel"
+                  component={UserPanel}
                 />
                 <Route component={NotFound} />
               </Switch>

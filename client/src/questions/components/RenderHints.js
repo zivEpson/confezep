@@ -1,7 +1,7 @@
 import React from "react";
 import { Field } from "redux-form";
 
-import QuestionField from "./QuestionField";
+import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
 
 const RenderHints = ({
   name,
@@ -10,6 +10,7 @@ const RenderHints = ({
   type,
   isViewMode,
   fields,
+  selectOptions,
   meta: { error }
 }) => {
   return (
@@ -38,11 +39,12 @@ const RenderHints = ({
       {fields.map((hints, index) => (
         <div key={index}>
           <Field
-            component={QuestionField}
+            component={FormFieldByType}
             type={type}
             name={hints}
             placeHolder={placeHolder}
             isViewMode={isViewMode}
+            selectOptions={selectOptions}
           />
         </div>
       ))}

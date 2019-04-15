@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { fetchQuestions } from "../questionAction";
 import FilterQuestionsForm from "../components/FilterQuestionsForm";
-import { validate } from "../components/Validations";
+import { validate } from "../redux-form/Validations";
 
 /**
  * container for the component which display the question filter panel

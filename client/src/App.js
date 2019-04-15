@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { fetchUser } from "./users/userAction";
+import { fetchUserAuth } from "./auth/authAction";
 import Routes from "./Routes";
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.fetchUserAuth();
   }
 
   render() {
@@ -21,5 +21,5 @@ class App extends Component {
 
 export default connect(
   null,
-  { fetchUser }
+  { fetchUserAuth }
 )(App);

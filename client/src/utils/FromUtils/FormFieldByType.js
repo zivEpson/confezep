@@ -1,14 +1,19 @@
 import React from "react";
 
-import RFReactSelect from "../../utils/FromUtils/RFReactSelect";
-import { questionsTypes } from "../constants/QuestionTypes";
+import RFReactSelect from "./RFReactSelect";
+// import { questionsTypes } from "../constants/QuestionTypes";
 
-export const QuestionField = ({
+/**
+ * Return Field type
+ * @param {*} param
+ */
+export const FormFieldByType = ({
   input,
   label,
   placeHolder,
   type,
   isViewMode,
+  selectOptions,
   meta: { error, touched }
 }) => {
   const renderQuestionType = () => {
@@ -31,7 +36,7 @@ export const QuestionField = ({
         />
       );
     } else if (type === "select") {
-      return <RFReactSelect input={input} options={questionsTypes} />;
+      return <RFReactSelect input={input} options={selectOptions} />;
     }
   };
 
@@ -46,4 +51,4 @@ export const QuestionField = ({
   );
 };
 
-export default QuestionField;
+export default FormFieldByType;

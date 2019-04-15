@@ -10,6 +10,7 @@ class QuestionBody extends Component {
     Prism.highlightAll();
   }
 
+  // should be a method in utils
   renderHints = hints => {
     return _.map(hints, (hint, index) => {
       return (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { ConnectedCreateUserForm } from "./ReduxConnectedUser";
+import { ConnectedCreateUserForm } from "../redux-form/ReduxConnectedUser";
 
 class UserContainer extends Component {
   render() {

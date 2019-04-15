@@ -2,10 +2,10 @@ import _ from "lodash";
 import React from "react";
 import { Field, FieldArray } from "redux-form";
 
-import QuestionField from "./QuestionField";
 import FormFields from "../constants/FormFields";
 import RenderHints from "./RenderHints";
 import RenderCodeBlock from "./RenderCodeBlock";
+import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
 
 const QuestionForm = ({
   handleSubmit,
@@ -17,7 +17,15 @@ const QuestionForm = ({
   const renderFields = () => {
     return _.map(
       FormFields,
-      ({ key, label, type, name, placeHolder, isArrayField }) => {
+      ({
+        key,
+        label,
+        type,
+        name,
+        placeHolder,
+        isArrayField,
+        selectOptions
+      }) => {
         if (isArrayField) {
           return (
             <FieldArray
@@ -26,6 +34,7 @@ const QuestionForm = ({
               type={type}
               placeHolder={placeHolder}
               label={label}
+              selectOptions={selectOptions}
               component={name === "hints" ? RenderHints : RenderCodeBlock}
             />
           );
@@ -33,12 +42,13 @@ const QuestionForm = ({
           return (
             <Field
               key={key}
-              component={QuestionField}
+              component={FormFieldByType}
               type={type}
               name={name}
               placeHolder={placeHolder}
               label={label}
               isViewMode={isViewMode}
+              selectOptions={selectOptions}
             />
           );
         }

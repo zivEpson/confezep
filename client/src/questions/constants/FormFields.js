@@ -1,3 +1,5 @@
+import { questionsTypes } from "./QuestionTypes";
+
 export default [
   {
     key: 1,
@@ -7,7 +9,8 @@ export default [
     placeHolder: "Enter Question Title",
     displayOnFilter: true,
     displayOnQuestionBody: true,
-    isArrayField: false
+    isArrayField: false,
+    selectOptions: []
   },
   {
     key: 2,
@@ -17,7 +20,8 @@ export default [
     placeHolder: "Question Type",
     displayOnFilter: true,
     displayOnQuestionBody: false,
-    isArrayField: false
+    isArrayField: false,
+    selectOptions: questionsTypes
   },
   {
     key: 3,
@@ -27,7 +31,8 @@ export default [
     placeHolder: "Enter Question Body",
     displayOnFilter: false,
     displayOnQuestionBody: true,
-    isArrayField: false
+    isArrayField: false,
+    selectOptions: []
   },
   {
     key: 4,
@@ -37,7 +42,8 @@ export default [
     placeHolder: "Enter Hint",
     displayOnFilter: false,
     displayOnQuestionBody: true,
-    isArrayField: true
+    isArrayField: true,
+    selectOptions: []
   },
   {
     key: 5,
@@ -47,7 +53,8 @@ export default [
     placeHolder: "Enter Code",
     displayOnFilter: false,
     displayOnQuestionBody: true,
-    isArrayField: true
+    isArrayField: true,
+    selectOptions: []
   },
   {
     key: 6,
@@ -56,6 +63,7 @@ export default [
     type: "textarea",
     placeHolder: "Enter Question Answer",
     displayOnQuestionBody: true,
-    isArrayField: false
+    isArrayField: false,
+    selectOptions: []
   }
 ];

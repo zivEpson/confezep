@@ -52,7 +52,6 @@ export const QuestionList = ({
 
   //set the question id as state, used when a question action is called
   const onRowSelect = (row, isSelected, e) => {
-    console.log(row);
     setChosenQuestion(row._id);
   };
 

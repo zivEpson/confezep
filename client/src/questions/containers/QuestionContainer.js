@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import queryString from "query-string";
 
-import { ConnectedCreateQuestionForm } from "./ReduxConnectedQuestion";
+import { ConnectedCreateQuestionForm } from "../redux-form/ReduxConnectedQuestion";
 import { submitQuestion, getQuestion, resetQuestions } from "../questionAction";
 import { isEmpty } from "../../utils/utils";
 import QuestionFromReview from "../components/QuestionFormReview";

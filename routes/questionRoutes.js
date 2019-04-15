@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const Question = mongoose.model("question");
+const utils = require("../utils/Utils");
 
 module.exports = app => {
   app.post("/api/questions", async (req, res) => {
@@ -30,7 +31,7 @@ module.exports = app => {
   app.get("/api/questions", async (req, res) => {
     const query = buildQueryObject(req);
 
-    if (isEmpty(query)) {
+    if (utils.isEmpty(query)) {
       res.sendStatus(400);
     } else {
       try {
@@ -87,7 +88,6 @@ module.exports = app => {
    * delete a single question by id
    */
   app.delete("/api/questions/:id", async (req, res) => {
-    console.log(req.params.id);
     if (req.params.id === null) {
       res.sendStatus(400);
     } else {
@@ -112,12 +112,5 @@ module.exports = app => {
       query.questionType = questionType;
     }
     return query;
-  }
-
-  function isEmpty(obj) {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) return false;
-    }
-    return true;
   }
 };

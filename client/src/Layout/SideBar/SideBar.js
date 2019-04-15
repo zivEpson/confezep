@@ -43,6 +43,14 @@ export const SideBar = () => {
                 Add User
               </Link>
             </li>
+            <li className="nav-item sidebar-nav-item">
+              <Link
+                className="nav-link text-muted"
+                to="/admin-dashboard/user-panel"
+              >
+                Find Users
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

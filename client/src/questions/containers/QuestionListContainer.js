@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
-import { default as PopUp } from "../../Layout/DataBaseResPopUp/DataBaseResPopUpContainer";
 import QuestionList from "../components/QuestionList";
 import { deleteQuestion, resetQuestions } from "../questionAction";
 import {
