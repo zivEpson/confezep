@@ -9,11 +9,9 @@ const filterUserForm = props => <FilterUsersForm {...props} />;
 
 export const ConnectedCreateUserForm = reduxForm({
   form: "createUserForm",
-  destroyOnUnmount: false,
-  enableReinitialize: true
+  destroyOnUnmount: false
 })(createUserForm);
 
 export const ConnectedFilterUserForm = reduxForm({
-  form: "filterUserForm",
-  enableReinitialize: true
+  form: "filterUserForm"
 })(filterUserForm);

@@ -1,4 +1,4 @@
-import React, { PropTypes } from "react";
+import React from "react";
 import Select from "react-select";
 // https://gist.github.com/leocristofani/98312e61807db8f32e720c9f97a186e5
 
@@ -7,13 +7,20 @@ RFReactSelect.defaultProps = {
   className: ""
 };
 
-export default function RFReactSelect({ input, options, multi, className }) {
+export default function RFReactSelect({
+  input,
+  options,
+  multi,
+  className,
+  isDisabled
+}) {
   const { name, value, onBlur, onChange, onFocus } = input;
   const transformedValue = transformValue(value, options, multi);
   return (
     <Select
       valueKey="value"
       name={name}
+      isDisabled={isDisabled}
       value={transformedValue}
       multi={multi}
       options={options}

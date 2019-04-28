@@ -1,14 +1,13 @@
 import React from "react";
 import { Field } from "redux-form";
 
-import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
+import FormFieldByType from "../../utils/FormUtils/FormFieldByType";
 
 const RenderCodeBlock = ({
-  name,
   label,
   placeHolder,
   type,
-  isViewMode,
+  disabled,
   fields,
   selectOptions,
   meta: { error }
@@ -19,14 +18,14 @@ const RenderCodeBlock = ({
         <span className="mr-2">{label}</span>
         <button
           label={label}
-          className="btn btn-outline-secondary"
+          className="btn btn-link"
           type="button"
           onClick={() => fields.push()}
         >
           <i className="fas fa-plus" />
         </button>
         <button
-          className="btn btn-outline-secondary"
+          className="btn btn-link"
           type="button"
           onClick={() => fields.pop()}
         >
@@ -41,7 +40,7 @@ const RenderCodeBlock = ({
             type={type}
             name={hints}
             placeHolder={placeHolder}
-            isViewMode={isViewMode}
+            disabled={disabled}
             selectOptions={selectOptions}
           />
         </div>

@@ -2,12 +2,12 @@ import { dateFormatter } from "../../utils/TableUtils/DataFormater";
 
 export const columns = [
   {
-    dataField: "name",
-    text: "User Name"
+    dataField: "title",
+    text: "Title"
   },
   {
-    dataField: "email",
-    text: "User Email"
+    dataField: "questionType",
+    text: "Type"
   },
   {
     dataField: "dateCreated",

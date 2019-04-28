@@ -1,7 +1,6 @@
 import React from "react";
 
 import RFReactSelect from "./RFReactSelect";
-// import { questionsTypes } from "../constants/QuestionTypes";
 
 /**
  * Return Field type
@@ -12,7 +11,7 @@ export const FormFieldByType = ({
   label,
   placeHolder,
   type,
-  isViewMode,
+  disabled,
   selectOptions,
   meta: { error, touched }
 }) => {
@@ -21,7 +20,7 @@ export const FormFieldByType = ({
       return (
         <input
           {...input}
-          disabled={isViewMode}
+          disabled={disabled}
           className={"form-control"}
           placeholder={placeHolder}
         />
@@ -30,13 +29,19 @@ export const FormFieldByType = ({
       return (
         <textarea
           {...input}
-          disabled={isViewMode}
+          disabled={disabled}
           className="form-control"
           placeholder={placeHolder}
         />
       );
     } else if (type === "select") {
-      return <RFReactSelect input={input} options={selectOptions} />;
+      return (
+        <RFReactSelect
+          input={input}
+          options={selectOptions}
+          isDisabled={disabled}
+        />
+      );
     }
   };
 

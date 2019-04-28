@@ -5,11 +5,11 @@ import { default as Header } from "./Layout/Header/HeaderContainer";
 import Landing from "./Layout/Landing";
 import NotFound from "./Layout/NotFound";
 import { default as SideBar } from "./Layout/SideBar/SideBarContainer";
-import { default as QuestionsPanel } from "./questions/containers/FilterQuestionsPanel";
+import { default as QuestionsPanel } from "./questions/containers/QuestionsPanelContainer";
 import AdminHome from "./Layout/AdminHome";
 import { default as Question } from "./questions/containers/QuestionContainer";
-import { default as Users } from "./users/container/UserContainer";
-import { default as UserPanel } from "./users/container/UserPanelContainer";
+import { default as Users } from "./users/containers/UserContainer";
+import { default as UserPanel } from "./users/containers/UsersPanelContainer";
 
 const Routes = () => {
   const showAdminSideBar = () => {
@@ -62,6 +62,16 @@ const Routes = () => {
                   exact
                   path="/admin-dashboard/user-panel"
                   component={UserPanel}
+                />
+                <Route
+                  exact
+                  path="/admin-dashboard/users/:id"
+                  component={Users}
+                />
+                <Route
+                  exact
+                  path="/admin-dashboard/new-user"
+                  component={Users}
                 />
                 <Route component={NotFound} />
               </Switch>

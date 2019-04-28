@@ -20,6 +20,44 @@ module.exports = app => {
       }
     }
   });
+
+  /**
+   * get a single question by id
+   */
+  app.get("/api/users/:id", async (req, res) => {
+    if (req.params.id === null) {
+      res.sendStatus(400);
+    } else {
+      try {
+        const user = await User.findById({
+          _id: req.params.id
+        })
+          .populate("_user")
+          .exec();
+        res.send(user);
+      } catch (err) {
+        res.sendStatus(500);
+      }
+    }
+  });
+
+  /**
+   * Update a single user
+   */
+  app.put("/api/users/:id", async (req, res) => {
+    if (req.params.id === null) {
+      res.sendStatus(400);
+    } else {
+      try {
+        await User.findByIdAndUpdate(req.params.id, {
+          $set: req.body
+        });
+        res.sendStatus(200);
+      } catch (err) {
+        res.sendStatus(500);
+      }
+    }
+  });
 };
 
 function buildQueryObject(req) {

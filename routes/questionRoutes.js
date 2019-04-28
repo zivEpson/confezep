@@ -73,10 +73,9 @@ module.exports = app => {
       res.sendStatus(400);
     } else {
       try {
-        const respond = await Question.findByIdAndUpdate(req.params.id, {
+        await Question.findByIdAndUpdate(req.params.id, {
           $set: req.body
         });
-        console.log(respond);
         res.sendStatus(200);
       } catch (err) {
         res.sendStatus(500);

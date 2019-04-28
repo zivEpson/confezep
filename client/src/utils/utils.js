@@ -49,3 +49,7 @@ export const difference = (object, base) => {
   }
   return changes(object, base);
 };
+
+export const buildURL = (moduleName, recordId, mode) => {
+  return `/admin-dashboard/${moduleName}s/${recordId}?mode=${mode}`;
+};

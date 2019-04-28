@@ -1,28 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { ConnectedCreateQuestionForm as QuestionForm } from "../redux-form/ReduxConnectedQuestion";
-import { submitQuestion, getQuestion, resetQuestions } from "../questionAction";
+import { getUser, submitUser } from "../userAction";
+import { isEmpty } from "../../utils/utils";
 import { getModelMode } from "../../utils/FormUtils/FormUtils";
 import LoadingSpinner from "../../utils/LoadinSpinner/LoadingSpinner";
-import { isEmpty } from "../../utils/utils";
-import QuestionFromReview from "../components/QuestionFormReview";
+import { ConnectedCreateUserForm as UserForm } from "../redux-form/ReduxConnectedUser";
+import UserFormReview from "../components/UserFormReview";
 
-/**
- QuestionContainer can be called on two scanarios with/out question id as        param. When param is sent, then the intilaValues of the question form should    be initilized
- */
-class QuestionContainer extends Component {
+class UserContainer extends Component {
   state = {
     showFormReview: false
   };
 
-  /*if question id param exist then fetch the question from the DB*/
   componentDidMount() {
     const { params } = this.props.match;
     if (!isEmpty(params)) {
-      this.props.getQuestion(params.id);
+      this.props.getUser(params.id);
     } else {
-      this.props.getQuestion(null);
+      this.props.getUser(null);
     }
   }
 
@@ -32,13 +28,13 @@ class QuestionContainer extends Component {
       formValues,
       location,
       history,
-      submitQuestion
+      submitUser
     } = this.props;
-
     const mode = getModelMode(location.search);
+
     if (!this.state.showFormReview) {
       return (
-        <QuestionForm
+        <UserForm
           initialValues={initialValues}
           mode={mode}
           onCancel={history.goBack}
@@ -49,14 +45,13 @@ class QuestionContainer extends Component {
       );
     } else {
       return (
-        <QuestionFromReview
-          formValues={formValues}
-          initialValues={initialValues}
-          submitMethod={submitQuestion}
-          onReturn={history.goBack}
+        <UserFormReview
           onCancel={() => {
             this.setState({ showFormReview: false });
           }}
+          submitMethod={submitUser}
+          formValues={formValues}
+          initialValues={initialValues}
           mode={mode}
         />
       );
@@ -73,19 +68,19 @@ class QuestionContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const { questions, form } = state;
+  const { users, form } = state;
   return {
-    initialValues: questions.items,
-    isFetching: questions.isFetching,
+    initialValues: users.items,
+    isFetching: users.isFetching,
     // before values are filled on the form
     formValues:
-      typeof form.createQuestionForm === "undefined"
+      typeof form.createUserForm === "undefined"
         ? {}
-        : form.createQuestionForm.values
+        : form.createUserForm.values
   };
 }
 
 export default connect(
   mapStateToProps,
-  { submitQuestion, getQuestion, resetQuestions }
-)(QuestionContainer);
+  { getUser, submitUser }
+)(UserContainer);

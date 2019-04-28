@@ -1,81 +1,15 @@
-import _ from "lodash";
 import React from "react";
-import { Field, FieldArray } from "redux-form";
 
-import FormFields from "../constants/FormFields";
-import RenderHints from "./RenderHints";
-import RenderCodeBlock from "./RenderCodeBlock";
-import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
+import FormFields, { FieldArrayMap } from "../constants/FormFields";
+import { renderFormFields } from "../../utils/FormUtils/RenderFormUtils";
+import FormButtons from "../../utils/FormUtils/FormButtons";
 
-const QuestionForm = ({
-  handleSubmit,
-  onSubmit,
-  isViewMode,
-  submitting,
-  onCancel
-}) => {
-  const renderFields = () => {
-    return _.map(
-      FormFields,
-      ({
-        key,
-        label,
-        type,
-        name,
-        placeHolder,
-        isArrayField,
-        selectOptions
-      }) => {
-        if (isArrayField) {
-          return (
-            <FieldArray
-              key={key}
-              name={name}
-              type={type}
-              placeHolder={placeHolder}
-              label={label}
-              selectOptions={selectOptions}
-              component={name === "hints" ? RenderHints : RenderCodeBlock}
-            />
-          );
-        } else {
-          return (
-            <Field
-              key={key}
-              component={FormFieldByType}
-              type={type}
-              name={name}
-              placeHolder={placeHolder}
-              label={label}
-              isViewMode={isViewMode}
-              selectOptions={selectOptions}
-            />
-          );
-        }
-      }
-    );
-  };
-
+const QuestionForm = ({ handleSubmit, onSubmit, onCancel, mode }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {renderFields()}
-        <div className="text-center">
-          <button
-            onClick={onCancel}
-            className="btn btn-outline-warning text-center mr-2"
-            type="button"
-          >
-            Cancel
-          </button>
-          <button
-            disabled={submitting}
-            className="btn btn-outline-success text-center "
-            type="submit"
-          >
-            Next
-          </button>
-        </div>
+        {renderFormFields(FormFields, FieldArrayMap, mode)}
+        <FormButtons onCancel={onCancel} />
       </form>
     </div>
   );

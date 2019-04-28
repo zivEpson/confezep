@@ -1,12 +1,18 @@
 import React from "react";
 
+import { renderFormFields } from "../../utils/FormUtils/RenderFormUtils";
+import FormFields from "../constants/FormFields";
+import FormButtons from "../../utils/FormUtils/FormButtons";
 /**
  * This component is to add a new User in the system
  */
-const UserForm = () => {
+const UserForm = props => {
   return (
     <div>
-      <h6>Add Component</h6>
+      <form onSubmit={props.handleSubmit(() => props.onSubmit())}>
+        {renderFormFields(FormFields, null, props.mode)}
+        <FormButtons onCancel={props.onCancel} />
+      </form>
     </div>
   );
 };

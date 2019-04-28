@@ -1,9 +1,5 @@
-/*
-Indentation on nav-items
-one line text
-*/
 .sidebar-nav-item {
-  padding-left: 12px !important;
+  /* one line text */
   white-space: nowrap;
 }
 

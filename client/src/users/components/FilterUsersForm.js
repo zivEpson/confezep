@@ -3,7 +3,7 @@ import React from "react";
 import { Field } from "redux-form";
 
 import FormFields from "../constants/FormFields";
-import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
+import FormFieldByType from "../../utils/FormUtils/FormFieldByType";
 
 /**
  * Search panel for users
@@ -11,10 +11,9 @@ import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
 function FilterUsersForm({ handleSubmit, onSubmit }) {
   const renderFields = () => {
     return _.map(FormFields, ({ key, name, displayOnFilter, label, type }) => {
-      // There are form fields shouldn't be displayed on filter panel
       if (displayOnFilter === true) {
         return (
-          <div key={key} className="col">
+          <div key={key} className="col-3">
             <Field
               component={FormFieldByType}
               type={type}

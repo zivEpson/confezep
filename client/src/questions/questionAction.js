@@ -3,9 +3,11 @@ import axios from "axios";
 import { setModalData, difference } from "../utils/utils";
 import {
   FETCH_QUESTIONS,
-  DB_POPUP_RESPONSE,
-  LOAD_QUESTION,
-  RESET_QUESTIONS
+  RESET_QUESTIONS,
+  REQUEST_QUESTION,
+  GET_QUESTION,
+  CLEAR_QUESTION,
+  DB_POPUP_RESPONSE
 } from "../actions/types";
 
 /**
@@ -63,8 +65,13 @@ export const deleteQuestion = id => async dispatch => {
  * @param {Question Id} id
  */
 export const getQuestion = id => async dispatch => {
-  const res = await axios.get(`/api/questions/${id}`);
-  dispatch({ type: LOAD_QUESTION, payload: res.data });
+  if (id !== null) {
+    dispatch({ type: REQUEST_QUESTION });
+    const res = await axios.get(`/api/questions/${id}`);
+    dispatch({ type: GET_QUESTION, payload: res.data });
+  } else {
+    dispatch({ type: CLEAR_QUESTION });
+  }
 };
 
 /**

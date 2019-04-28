@@ -3,13 +3,13 @@ import React from "react";
 import { Field } from "redux-form";
 
 import FormFields from "../constants/FormFields";
-import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
+import FormFieldByType from "../../utils/FormUtils/FormFieldByType";
 
 /**
  * component which display the question filter panel
  * @param {props} param
  */
-export const FilterQuestionsForm = ({ handleSubmit, onSubmit, onClear }) => {
+export const FilterQuestionsForm = ({ handleSubmit, onSubmit }) => {
   const renderFields = () => {
     return _.map(
       FormFields,
@@ -17,7 +17,7 @@ export const FilterQuestionsForm = ({ handleSubmit, onSubmit, onClear }) => {
         // There are form fields shouldn't be displayed on filter panel
         if (displayOnFilter === true) {
           return (
-            <div key={key} className="col">
+            <div key={key} className="col-3">
               <Field
                 component={FormFieldByType}
                 type={type}

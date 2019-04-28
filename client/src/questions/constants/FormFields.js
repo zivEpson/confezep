@@ -1,5 +1,10 @@
 import { questionsTypes } from "./QuestionTypes";
 
+import RenderCodeBlock from "../components/RenderCodeBlock";
+import RenderHints from "../components/RenderHints";
+
+export const FieldArrayMap = { bodyCode: RenderCodeBlock, hints: RenderHints };
+
 export default [
   {
     key: 1,

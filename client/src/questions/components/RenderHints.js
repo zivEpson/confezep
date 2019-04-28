@@ -1,14 +1,13 @@
 import React from "react";
 import { Field } from "redux-form";
 
-import FormFieldByType from "../../utils/FromUtils/FormFieldByType";
+import FormFieldByType from "../../utils/FormUtils/FormFieldByType";
 
 const RenderHints = ({
-  name,
   label,
   placeHolder,
   type,
-  isViewMode,
+  disabled,
   fields,
   selectOptions,
   meta: { error }
@@ -19,7 +18,7 @@ const RenderHints = ({
         <span className="mr-2">{label}</span>
         <button
           label={label}
-          className="btn btn-outline-secondary"
+          className="btn btn-link"
           type="button"
           title="Add Hint"
           onClick={() => fields.push()}
@@ -27,7 +26,7 @@ const RenderHints = ({
           <i className="fas fa-plus" />
         </button>
         <button
-          className="btn btn-outline-secondary"
+          className="btn btn-link"
           type="button"
           title="Remove Hint"
           onClick={() => fields.pop()}
@@ -43,7 +42,7 @@ const RenderHints = ({
             type={type}
             name={hints}
             placeHolder={placeHolder}
-            isViewMode={isViewMode}
+            disabled={disabled}
             selectOptions={selectOptions}
           />
         </div>
