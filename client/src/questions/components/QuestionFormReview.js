@@ -1,6 +1,6 @@
 import React from "react";
 
-import { default as PopUp } from "../../Layout/DataBaseResPopUp/DataBaseResPopUpContainer";
+import ModalRoot from "../../utils/modal/components/ModalRoot";
 import QuestionBody from "./QuestionDisplay";
 import FormReviewButtons from "../../utils/FormUtils/FormReviewButtons";
 
@@ -12,12 +12,6 @@ export const QuestionFormReview = ({
   onCancel,
   mode
 }) => {
-  const renderPopUp = () => {
-    // if (!isViewMode) {
-    return <PopUp onReturn={onReturn} />;
-    // }
-  };
-
   return (
     <div>
       <QuestionBody formValues={formValues} />
@@ -27,8 +21,9 @@ export const QuestionFormReview = ({
         formValues={formValues}
         initialValues={initialValues}
         mode={mode}
+        onReturn={onReturn}
       />
-      {renderPopUp()}
+      <ModalRoot />
     </div>
   );
 };

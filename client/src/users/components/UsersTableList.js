@@ -4,8 +4,8 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { columns, selectRow } from "../constants/UserTableConstants";
 import TableButtons from "../../utils/TableUtils/TableButtons";
 
-const UsersTableList = ({ users }) => {
-  // hooks
+const UsersTableList = ({ users, deleteFunc }) => {
+  // hooks - set record id
   const [recordId, setRecordId] = useState(null);
   const onSelect = row => {
     setRecordId(row._id);
@@ -14,7 +14,11 @@ const UsersTableList = ({ users }) => {
 
   return (
     <div>
-      <TableButtons moduleName={"user"} recordId={recordId} deleteFunc={null} />
+      <TableButtons
+        moduleName={"user"}
+        recordId={recordId}
+        deleteFunc={deleteFunc}
+      />
       <BootstrapTable
         keyField="_id"
         data={users}

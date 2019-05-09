@@ -5,14 +5,15 @@ function FormReviewButtons({
   onCancel,
   formValues,
   initialValues,
-  mode
+  mode,
+  onReturn
 }) {
   const renderButton = () => {
     switch (mode) {
       case "add":
         return (
           <button
-            onClick={() => onAction(formValues, initialValues)}
+            onClick={() => onAction(formValues, initialValues, onReturn)}
             className="btn btn-outline-success"
           >
             Submit
@@ -21,7 +22,7 @@ function FormReviewButtons({
       case "update":
         return (
           <button
-            onClick={() => onAction(formValues, initialValues)}
+            onClick={() => onAction(formValues, initialValues, onReturn)}
             className="btn btn-outline-success"
           >
             Update

@@ -3,18 +3,19 @@ import { connect } from "react-redux";
 
 import { ConnectedFilterUserForm as FilterUserForm } from "../redux-form/ReduxConnectedUser";
 import UsersTableList from "../components/UsersTableList";
-import { fetchUsers } from "../userAction";
+import { fetchUsers, deleteUser } from "../userAction";
 
 /**
  * This container represent the User panel
  */
 class UsersPanelContainer extends Component {
   render() {
+    const { fetchUsers, deleteUser, users } = this.props;
     return (
       <div>
-        <FilterUserForm onSubmit={this.props.fetchUsers} />
+        <FilterUserForm onSubmit={fetchUsers} />
         <hr className="mt-5" />
-        <UsersTableList users={this.props.users} />
+        <UsersTableList users={users} deleteFunc={deleteUser} />
       </div>
     );
   }
@@ -26,5 +27,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchUsers }
+  { fetchUsers, deleteUser }
 )(UsersPanelContainer);

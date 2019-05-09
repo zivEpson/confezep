@@ -44,3 +44,13 @@ export const submitUser = (values, initialValues) => async dispatch => {
     );
   }
 };
+
+export const deleteUser = id => async dispatch => {
+  dispatch({
+    type: "SHOW_MODAL",
+    modalType: "DELETE_MODAL",
+    modalProps: {
+      modelId: id
+    }
+  });
+};

@@ -1,13 +1,13 @@
 import axios from "axios";
+import { isEmpty } from "../utils/utils";
 
-import { setModalData, difference } from "../utils/utils";
+import { difference } from "../utils/utils";
 import {
   FETCH_QUESTIONS,
   RESET_QUESTIONS,
   REQUEST_QUESTION,
   GET_QUESTION,
-  CLEAR_QUESTION,
-  DB_POPUP_RESPONSE
+  CLEAR_QUESTION
 } from "../actions/types";
 
 /**
@@ -31,10 +31,14 @@ export const fetchQuestions = values => async dispatch => {
  *
  * @param {*} values
  */
-export const submitQuestion = (values, initialValues) => async dispatch => {
+export const submitQuestion = (
+  values,
+  initialValues,
+  onReturn
+) => async dispatch => {
   let res;
   // on create question initailValues are null
-  if (initialValues === null) {
+  if (isEmpty(initialValues)) {
     res = await axios.post("/api/questions", values);
     // on update question the delta is sent to be updated
   } else {
@@ -43,20 +47,37 @@ export const submitQuestion = (values, initialValues) => async dispatch => {
       difference(values, initialValues)
     );
   }
+
   dispatch({
-    type: DB_POPUP_RESPONSE,
-    payload: setModalData(res, "Create Contact", "Contact was Created", false)
+    type: "SHOW_MODAL",
+    modalType: "DB_UPDATE_MODAL",
+    modalProps: {
+      modelName: "question",
+      status: res.status,
+      onReturn: onReturn
+    }
   });
+};
+
+const deleteFunc = async id => {
+  const res = await axios.delete(`/api/questions/${id}`);
 };
 
 /**
  * Delete question according to question id
- *
  * @param {Question Id} id
  */
-export const deleteQuestion = id => async dispatch => {
-  await axios.delete(`/api/questions/${id}`);
-  dispatch({ type: RESET_QUESTIONS });
+export const deleteQuestion = (id, hideRowFunc) => dispatch => {
+  dispatch({
+    type: "SHOW_MODAL",
+    modalType: "DELETE_MODAL",
+    modalProps: {
+      modelId: id,
+      deleteFunc: deleteFunc,
+      hideRowFunc: hideRowFunc,
+      modelName: "question"
+    }
+  });
 };
 
 /**

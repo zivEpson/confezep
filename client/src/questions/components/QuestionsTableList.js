@@ -7,6 +7,8 @@ import TableButtons from "../../utils/TableUtils/TableButtons";
 const QuestionsTableList = ({ questions, deleteFunc }) => {
   // hooks
   const [recordId, setRecordId] = useState(null);
+  const [deletedRecordId, hideRow] = useState(null);
+
   const onSelect = row => {
     setRecordId(row._id);
   };
@@ -18,12 +20,14 @@ const QuestionsTableList = ({ questions, deleteFunc }) => {
         moduleName={"question"}
         recordId={recordId}
         deleteFunc={deleteFunc}
+        hideRow={hideRow}
       />
       <BootstrapTable
         keyField="_id"
         data={questions}
         columns={columns}
         selectRow={selectRow}
+        hiddenRows={[deletedRecordId]}
       />
     </div>
   );

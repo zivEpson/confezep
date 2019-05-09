@@ -11,6 +11,7 @@ const FilterQuestionForm = props => <FilterQuestionsForm {...props} />;
 export const ConnectedCreateQuestionForm = reduxForm({
   form: "createQuestionForm",
   destroyOnUnmount: false,
+  enableReinitialize: true,
   validate: validate
 })(CreateQuestionForm);
 

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Redirect } from "react-router";
 
 import { buildURL } from "../utils";
+import ModalRoot from "../modal/components/ModalRoot";
 import "./TableUtils.css";
 
-const TableButtons = ({ moduleName, recordId, deleteFunc }) => {
+const TableButtons = ({ moduleName, recordId, deleteFunc, hideRow }) => {
   const [actionType, setActionType] = useState(null);
 
   const buttonAction = () => {
@@ -61,11 +62,14 @@ const TableButtons = ({ moduleName, recordId, deleteFunc }) => {
       <button
         className="btn btn-link"
         type="button"
-        onClick={() => setActionType("delete")}
+        onClick={() => {
+          deleteFunc(recordId, hideRow);
+        }}
       >
         <i className="far fa-trash-alt" />
       </button>
       {buttonAction()}
+      <ModalRoot />
     </div>
   );
 };

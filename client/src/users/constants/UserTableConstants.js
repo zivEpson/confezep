@@ -17,7 +17,7 @@ export const columns = [
 ];
 
 export const selectRow = {
-  mode: "checkbox",
+  mode: "radio",
   clickToSelect: true,
   hideSelectColumn: true,
   bgColor: "#ffb4d9",

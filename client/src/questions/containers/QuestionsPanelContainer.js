@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { ConnectedFilterQuestionForm as FilterQuestionForm } from "../redux-form/ReduxConnectedQuestion";
-import QuestionsTableList2 from "../components/QuestionsTableList";
+import QuestionsTableList from "../components/QuestionsTableList";
 
 import {
   deleteQuestion,
@@ -15,14 +15,12 @@ import {
  */
 class QuestionsPanelContainer extends Component {
   render() {
+    const { fetchQuestions, deleteQuestion, questions } = this.props;
     return (
       <div className="mt-4">
-        <FilterQuestionForm onSubmit={this.props.fetchQuestions} />
+        <FilterQuestionForm onSubmit={fetchQuestions} />
         <hr className="my-5" />
-        <QuestionsTableList2
-          questions={this.props.questions}
-          deleteFunc={deleteQuestion}
-        />
+        <QuestionsTableList questions={questions} deleteFunc={deleteQuestion} />
       </div>
     );
   }
@@ -50,5 +48,3 @@ export default connect(
   mapStateToProps,
   { deleteQuestion, resetQuestions, fetchQuestions }
 )(QuestionsPanelContainer);
-
-// export default QuestionsPanelContainer;

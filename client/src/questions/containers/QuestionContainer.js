@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { ConnectedCreateQuestionForm as QuestionForm } from "../redux-form/ReduxConnectedQuestion";
-import { submitQuestion, getQuestion, resetQuestions } from "../questionAction";
+import { submitQuestion, getQuestion } from "../questionAction";
 import { getModelMode } from "../../utils/FormUtils/FormUtils";
 import LoadingSpinner from "../../utils/LoadinSpinner/LoadingSpinner";
 import { isEmpty } from "../../utils/utils";
@@ -87,5 +87,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { submitQuestion, getQuestion, resetQuestions }
+  { submitQuestion, getQuestion }
 )(QuestionContainer);

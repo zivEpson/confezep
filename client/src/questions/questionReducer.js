@@ -23,7 +23,7 @@ export default function(state = [], action) {
         items: {}
       });
     case RESET_QUESTIONS:
-      return null;
+      return [];
     default:
       return state;
   }

@@ -16,8 +16,9 @@ export const columns = [
   }
 ];
 
+// @link https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/row-select-props.html#selectrowselected-array
 export const selectRow = {
-  mode: "checkbox",
+  mode: "radio",
   clickToSelect: true,
   hideSelectColumn: true,
   bgColor: "#ffb4d9",
