@@ -1,13 +1,30 @@
+//@flow
 import React from "react";
 
-function FormReviewButtons({
-  onAction,
-  onCancel,
-  formValues,
-  initialValues,
-  mode,
-  onReturn
-}) {
+/**
+ * @file generic buttons for review screen
+ * @module FormReviewButtons
+ */
+
+type Props = {
+  onAction: Function,
+  onCancel: Function,
+  formValues: Object,
+  initialValues: Object,
+  mode: string,
+  onReturn: Function
+};
+
+function FormReviewButtons(props: Props) {
+  const {
+    onAction,
+    onCancel,
+    formValues,
+    initialValues,
+    mode,
+    onReturn
+  } = props;
+
   const renderButton = () => {
     switch (mode) {
       case "add":

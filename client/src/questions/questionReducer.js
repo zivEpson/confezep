@@ -1,15 +1,23 @@
+//@flow
 import {
   FETCH_QUESTIONS,
-  RESET_QUESTIONS,
   REQUEST_QUESTION,
   GET_QUESTION,
   CLEAR_QUESTION
 } from "../actions/types";
 
-export default function(state = [], action) {
+/**
+ * @file question redux-reducer library. specify how the application's state changes  in response to actions sent to the store.
+ * @module questionReducer
+ */
+
+export default function(state: Object = {}, action: Object) {
   switch (action.type) {
     case FETCH_QUESTIONS:
-      return action.payload;
+      return Object.assign({}, state, {
+        isFetching: false,
+        items: action.payload
+      });
     case REQUEST_QUESTION:
       return Object.assign({}, state, { isFetching: true });
     case GET_QUESTION:
@@ -22,8 +30,6 @@ export default function(state = [], action) {
         isFetching: false,
         items: {}
       });
-    case RESET_QUESTIONS:
-      return [];
     default:
       return state;
   }

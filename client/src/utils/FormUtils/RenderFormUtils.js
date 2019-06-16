@@ -1,10 +1,21 @@
+//@ flow
 import _ from "lodash";
 import React from "react";
 import { Field, FieldArray } from "redux-form";
 
 import FormFieldByType from "./FormFieldByType";
 
-export const renderFormFields = (FormFields, FieldArrayMap, mode) => {
+/**
+ * @file render question form fields, according to their type. will call redux-form Field or FieldArray with the needed values
+ * @module renderFormFields
+ * @exports renderFormFields
+ */
+
+export const renderFormFields = (
+  FormFields: [any],
+  FieldArrayMap: Object,
+  mode: string
+) => {
   const isDisabled = isDisabledFields(mode);
   return _.map(
     FormFields,
@@ -40,7 +51,7 @@ export const renderFormFields = (FormFields, FieldArrayMap, mode) => {
   );
 };
 
-const isDisabledFields = mode => {
+const isDisabledFields = (mode: string) => {
   switch (mode) {
     case "add":
       return false;

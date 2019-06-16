@@ -1,15 +1,26 @@
+// @flow
 import React, { Component } from "react";
 import Prism from "prismjs";
 
 import "../../utils/DisplayUtils/CodeBlockUtils/prism.css";
-
 import {
   getButtonAndCollapse,
   getListOfButtonsAndCollapses
 } from "../../utils/DisplayUtils/ButtonAndCollapse";
 
-class QuestionDisplay extends Component {
+/**
+ * @file Display the question for end-user
+ * @module QuestionDisplay
+ */
+
+type Props = {
+  //values from the DB or from the new created question
+  formValues: Object
+};
+
+class QuestionDisplay extends Component<Props> {
   componentDidMount() {
+    //PrismJS - initialize the code format
     Prism.highlightAll();
   }
 

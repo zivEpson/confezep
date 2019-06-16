@@ -1,21 +1,25 @@
+//@flow
 import axios from "axios";
 import { isEmpty } from "../utils/utils";
-
 import { difference } from "../utils/utils";
 import {
   FETCH_QUESTIONS,
-  RESET_QUESTIONS,
   REQUEST_QUESTION,
   GET_QUESTION,
   CLEAR_QUESTION
 } from "../actions/types";
 
 /**
- * Fetch questions according to the given question params
- *
- * @param {*} values
+ * @file question redux-actions library. Send data from the application to the redux  * store. The data is sent using dispatch (redux method).
+ * @module questionAction
  */
-export const fetchQuestions = values => async dispatch => {
+
+/**
+ * Fetch questions from DB according to the given question params
+ */
+export const fetchQuestions = (values: Object) => async (
+  dispatch: Function
+) => {
   const res = await axios.get("/api/questions", {
     params: {
       title: values["title"],
@@ -26,16 +30,13 @@ export const fetchQuestions = values => async dispatch => {
 };
 
 /**
- * Submit question to the Data-Base
- * After response, dispatch for popup response
- *
- * @param {*} values
+ * Submit question to the DB. Modal with DB status is provided.
  */
 export const submitQuestion = (
-  values,
-  initialValues,
-  onReturn
-) => async dispatch => {
+  values: Object,
+  initialValues: Object,
+  onReturn: Function
+) => async (dispatch: Function) => {
   let res;
   // on create question initailValues are null
   if (isEmpty(initialValues)) {
@@ -59,15 +60,17 @@ export const submitQuestion = (
   });
 };
 
+//delete from DB by question id
 const deleteFunc = async id => {
-  const res = await axios.delete(`/api/questions/${id}`);
+  await axios.delete(`/api/questions/${id}`);
 };
 
 /**
  * Delete question according to question id
- * @param {Question Id} id
  */
-export const deleteQuestion = (id, hideRowFunc) => dispatch => {
+export const deleteQuestion = (id: any, hideRowFunc: Function) => (
+  dispatch: Function
+) => {
   dispatch({
     type: "SHOW_MODAL",
     modalType: "DELETE_MODAL",
@@ -81,11 +84,10 @@ export const deleteQuestion = (id, hideRowFunc) => dispatch => {
 };
 
 /**
- * Get question according to question id
- *
- * @param {Question Id} id
+ * Get question from DB according to question id.
+ * @param id
  */
-export const getQuestion = id => async dispatch => {
+export const getQuestion = (id: any) => async (dispatch: Function) => {
   if (id !== null) {
     dispatch({ type: REQUEST_QUESTION });
     const res = await axios.get(`/api/questions/${id}`);
@@ -93,11 +95,4 @@ export const getQuestion = id => async dispatch => {
   } else {
     dispatch({ type: CLEAR_QUESTION });
   }
-};
-
-/**
- * Reset questions reducer
- */
-export const resetQuestions = () => async dispatch => {
-  dispatch({ type: RESET_QUESTIONS });
 };

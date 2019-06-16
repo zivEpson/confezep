@@ -1,4 +1,10 @@
+//@ flow
 import React from "react";
+
+/**
+ * @file loading spiner, used when data is fetched
+ * @module LoadingSpinner
+ */
 
 const LoadingSpinner = () => {
   return (

@@ -1,7 +1,13 @@
+//@flow
 import { questionsTypes } from "./QuestionTypes";
-
 import RenderCodeBlock from "../components/RenderCodeBlock";
 import RenderHints from "../components/RenderHints";
+
+/**
+ * @file contains setup for all question module form fields. type, name, label, etc.
+ * @module formFields
+ * @export FieldArrayMap
+ */
 
 export const FieldArrayMap = { bodyCode: RenderCodeBlock, hints: RenderHints };
 

@@ -1,9 +1,17 @@
+//@flow
 import React from "react";
 import { reduxForm } from "redux-form";
 
 import QuestionForm from "../components/QuestionForm";
 import FilterQuestionsForm from "../components/FilterQuestionsForm";
 import { validate } from "./Validations";
+
+/**
+ * @file location for initilaizing redux-form components
+ * @module ReduxConnectedQuestion.
+ * @export ConnectedCreateQuestionForm
+ * @export ConnectedFilterQuestionForm
+ */
 
 const CreateQuestionForm = props => <QuestionForm {...props} />;
 const FilterQuestionForm = props => <FilterQuestionsForm {...props} />;
@@ -17,5 +25,5 @@ export const ConnectedCreateQuestionForm = reduxForm({
 
 export const ConnectedFilterQuestionForm = reduxForm({
   form: "filterQuestionForm",
-  validate
+  validate: validate
 })(FilterQuestionForm);

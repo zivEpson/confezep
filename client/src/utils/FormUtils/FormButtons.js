@@ -1,4 +1,10 @@
+//@ flow
 import React from "react";
+
+/**
+ * @file Generic component for create form buttons
+ * @module FormButtons
+ */
 
 const FormButtons = ({ onCancel }) => {
   return (

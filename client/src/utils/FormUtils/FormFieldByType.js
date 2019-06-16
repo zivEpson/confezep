@@ -1,20 +1,34 @@
+//@flow
 import React from "react";
 
 import RFReactSelect from "./RFReactSelect";
 
 /**
- * Return Field type
- * @param {*} param
+ * @file helper method to return form field according to setup (text, textarea, select) this field is initalized by redux-form 'Field' component
+ * @module FormFieldByType
+ * @exports FormFieldByType
  */
-export const FormFieldByType = ({
-  input,
-  label,
-  placeHolder,
-  type,
-  disabled,
-  selectOptions,
-  meta: { error, touched }
-}) => {
+
+type Props = {
+  input: any,
+  label: string,
+  placeHolder: string,
+  type: string,
+  disabled: any,
+  selectOptions: any,
+  meta: Object
+};
+
+export const FormFieldByType = (props: Props) => {
+  const {
+    input,
+    label,
+    placeHolder,
+    type,
+    disabled,
+    selectOptions,
+    meta: { error, touched }
+  } = props;
   const renderQuestionType = () => {
     if (type === "text") {
       return (

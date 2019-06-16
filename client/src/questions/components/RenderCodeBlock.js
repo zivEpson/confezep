@@ -1,17 +1,30 @@
+// @flow
 import React from "react";
 import { Field } from "redux-form";
 
 import FormFieldByType from "../../utils/FormUtils/FormFieldByType";
 
-const RenderCodeBlock = ({
-  label,
-  placeHolder,
-  type,
-  disabled,
-  fields,
-  selectOptions,
-  meta: { error }
-}) => {
+type Props = {
+  label: any,
+  placeHolder: any,
+  type: any,
+  disabled: Boolean,
+  fields: any,
+  selectOptions: any,
+  meta: any
+};
+
+const RenderCodeBlock = (props: Props) => {
+  const {
+    label,
+    placeHolder,
+    type,
+    disabled,
+    fields,
+    selectOptions,
+    meta: { error }
+  } = props;
+
   return (
     <div>
       <div className="btn-group btn-group-sm" role="group">

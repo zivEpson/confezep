@@ -1,25 +1,34 @@
+// @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { ConnectedFilterQuestionForm as FilterQuestionForm } from "../redux-form/ReduxConnectedQuestion";
 import QuestionsTableList from "../components/QuestionsTableList";
-
-import {
-  deleteQuestion,
-  resetQuestions,
-  fetchQuestions
-} from "../questionAction";
+import { deleteQuestion, fetchQuestions } from "../questionAction";
 
 /**
- * Class to display find questions panel
+ * @file Entry point for displaying filter questions panel and table.
+ * @module QuestionsPanelContainer
  */
-class QuestionsPanelContainer extends Component {
+
+type Props = {
+  //questionAction - Fetch questions from DB according to the given question params
+  fetchQuestions: Function,
+  //questionAction - Delete question according to question id
+  deleteQuestion: Function,
+  // returend data from the DB
+  questions: [Object]
+};
+
+class QuestionsPanelContainer extends Component<Props> {
   render() {
     const { fetchQuestions, deleteQuestion, questions } = this.props;
     return (
       <div className="mt-4">
+        {/*search panel*/}
         <FilterQuestionForm onSubmit={fetchQuestions} />
         <hr className="my-5" />
+        {/*table panel*/}
         <QuestionsTableList questions={questions} deleteFunc={deleteQuestion} />
       </div>
     );
@@ -30,7 +39,6 @@ class QuestionsPanelContainer extends Component {
  * Add question and question list share the same reducer,
  * when returned from add question, the reducer state is {}
  * question list expect [].
- * @param {*} questions
  */
 function setQuestionsList(questions) {
   if (Array.isArray(questions)) {
@@ -40,11 +48,13 @@ function setQuestionsList(questions) {
   }
 }
 
+//update values from reducer to props
 function mapStateToProps(state) {
-  return { questions: setQuestionsList(state.questions) };
+  return { questions: setQuestionsList(state.questions.items) };
 }
 
+//connect to redux store
 export default connect(
   mapStateToProps,
-  { deleteQuestion, resetQuestions, fetchQuestions }
+  { deleteQuestion, fetchQuestions }
 )(QuestionsPanelContainer);

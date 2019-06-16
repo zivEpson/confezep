@@ -11,7 +11,6 @@ export const FETCH_QUESTIONS = "fetch_questions";
 export const REQUEST_QUESTION = "request_question";
 export const GET_QUESTION = "get_question";
 export const CLEAR_QUESTION = "clear_question";
-export const RESET_QUESTIONS = "load_question";
 //navbar
 export const NAV_ACTION = "nav_action";
 //popup

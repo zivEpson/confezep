@@ -1,3 +1,11 @@
+//@flow
+
+/**
+ * @file contain setup for question select-box
+ * @module questionsTypes
+ * @export questionsTypes
+ */
+
 export const questionsTypes = [
   { value: "", label: "Select..." },
   { value: "basic-java", label: "Basic Java" },

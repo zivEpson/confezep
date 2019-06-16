@@ -1,7 +1,10 @@
+//@flow
+
 /**
- * validation error method for question form
+ * @file validation error method for question form
+ * @module Validations.
  */
-export const validate = values => {
+export const validate = (values: Object) => {
   const errors = {};
   if (!values.title) {
     errors.title = "Required";

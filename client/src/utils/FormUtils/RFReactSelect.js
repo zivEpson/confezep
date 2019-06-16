@@ -1,6 +1,11 @@
 import React from "react";
 import Select from "react-select";
-// https://gist.github.com/leocristofani/98312e61807db8f32e720c9f97a186e5
+/**
+ * @file redux-form select box
+ * @module RFReactSelect
+ * @exports RFReactSelect
+ * @link https://gist.github.com/leocristofani/98312e61807db8f32e720c9f97a186e5
+ */
 
 RFReactSelect.defaultProps = {
   multi: false,
@@ -56,7 +61,7 @@ function multiChangeHandler(func) {
  * For single select, Redux Form keeps the value as a string, while React Select
  * wants the value in the form { value: "grape", label: "Grape" }
  *
- * * For multi select, Redux Form keeps the value as array of strings, while React Select
+ * For multi select, Redux Form keeps the value as array of strings, while React Select
  * wants the array of values in the form [{ value: "grape", label: "Grape" }]
  */
 function transformValue(value, options, multi) {

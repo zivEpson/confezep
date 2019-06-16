@@ -1,17 +1,33 @@
+// @flow
+/**
+ * @module RenderHints
+ *  */
 import React from "react";
 import { Field } from "redux-form";
 
 import FormFieldByType from "../../utils/FormUtils/FormFieldByType";
 
-const RenderHints = ({
-  label,
-  placeHolder,
-  type,
-  disabled,
-  fields,
-  selectOptions,
-  meta: { error }
-}) => {
+type Props = {
+  label: any,
+  placeHolder: any,
+  type: any,
+  disabled: Boolean,
+  fields: any,
+  selectOptions: any,
+  meta: any
+};
+
+const RenderHints = (props: Props) => {
+  const {
+    label,
+    placeHolder,
+    type,
+    disabled,
+    fields,
+    selectOptions,
+    meta: { error }
+  } = props;
+
   return (
     <div>
       <div className="btn-group btn-group-sm" role="group">
