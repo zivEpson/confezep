@@ -2,23 +2,23 @@
 import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 
-import { columns, selectRow } from "../constants/QuestionTableConstants";
+import { columns, selectRow } from "../constants/CourseTableConstants";
 import TableButtons from "../../utils/TableUtils/TableButtons";
 
 /**
- * @file component which desiplay the question table
- * @module QuestionsTableList
+ * @file component which desiplay the course table
+ * @module CoursesTableList
  */
 
 type Props = {
-  //questionAction - delete question by id
+  //courseAction - delete question by id
   deleteFunc: Function,
-  //questions fetched from db.
-  questions: [Object]
+  //courses fetched from db.
+  courses: [Object]
 };
 
-const QuestionsTableList = (props: Props) => {
-  const { questions, deleteFunc } = props;
+const CoursesTableList = (props: Props) => {
+  const { courses, deleteFunc } = props;
   // hooks - let you use state without writing a class.
   const [recordId, setRecordId] = useState(null);
   const [deletedRecordId, hideRow] = useState(null);
@@ -31,14 +31,14 @@ const QuestionsTableList = (props: Props) => {
   return (
     <div>
       <TableButtons
-        moduleName={"question"}
+        moduleName={"course"}
         recordId={recordId}
         deleteFunc={deleteFunc}
         hideRow={hideRow}
       />
       <BootstrapTable
         keyField="_id"
-        data={questions}
+        data={courses}
         columns={columns}
         selectRow={selectRow}
         hiddenRows={[deletedRecordId]}
@@ -47,4 +47,4 @@ const QuestionsTableList = (props: Props) => {
   );
 };
 
-export default QuestionsTableList;
+export default CoursesTableList;

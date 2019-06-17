@@ -4,6 +4,9 @@ const Question = mongoose.model("question");
 const utils = require("../utils/Utils");
 
 module.exports = app => {
+  /**
+   * Create a new question on db
+   */
   app.post("/api/questions", async (req, res) => {
     const { title, body, answer, questionType, hints, bodyCode } = req.body;
 
@@ -66,7 +69,7 @@ module.exports = app => {
   });
 
   /**
-   * Update a single
+   * Update a single question
    */
   app.put("/api/questions/:id", async (req, res) => {
     if (req.params.id === null) {

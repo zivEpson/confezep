@@ -10,7 +10,7 @@ import { isEmpty } from "../../utils/utils";
 import QuestionFromReview from "../components/QuestionFormReview";
 
 /**
- * @file Entry point for Create/Update/View Question. There are two scanarios this module will be called. First scanario is question id as param(on the route).On this scanario the Question intilaValues(redux) will be initilized from DB(Update/ View). When question id is missiing as param, the flow is for create new question intilaValues will be empty.
+ * @file Entry point for Create/Update/View Question. There are two scanarios this module will be called. First scanario is question id as param(on the route).On this scanario the Question intilaValues(redux) will be initilized from DB(Update/ View). When question id is missiing as param, the flow is for create new question intilaValues will be empty. dsa
  * @module QuestionContainer
  */
 

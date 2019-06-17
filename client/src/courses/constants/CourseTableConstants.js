@@ -2,7 +2,7 @@
 import { dateFormatter } from "../../utils/TableUtils/DataFormater";
 
 /**
- * @file contains setup for question table columns.
+ * @file contains setup for course table columns.
  * @module QuestionTableConstants
  * @export columns
  * @export selectRow
@@ -11,12 +11,12 @@ import { dateFormatter } from "../../utils/TableUtils/DataFormater";
 
 export const columns = [
   {
-    dataField: "title",
-    text: "Title"
+    dataField: "name",
+    text: "Course Name"
   },
   {
-    dataField: "questionType",
-    text: "Type"
+    dataField: "description",
+    text: "Course Description"
   },
   {
     dataField: "dateCreated",

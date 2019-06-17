@@ -18,3 +18,8 @@ export const DB_POPUP_RESPONSE = "db_popup_response";
 export const RESET_DB_POPUP_RESPONSE = "reset_db_popup_response";
 //loading spinner
 export const LOADING_SPINNER = "loading_spinner";
+//course
+export const FETCH_COURSES = "fetch_courses";
+export const GET_COURSE = "get_course";
+export const REQUEST_COURSE = "request_course";
+export const CLEAR_COURSE = "clear_course";

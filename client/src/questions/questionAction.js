@@ -1,7 +1,7 @@
 //@flow
 import axios from "axios";
-import { isEmpty } from "../utils/utils";
-import { difference } from "../utils/utils";
+
+import { isEmpty, difference } from "../utils/utils";
 import {
   FETCH_QUESTIONS,
   REQUEST_QUESTION,
@@ -41,8 +41,8 @@ export const submitQuestion = (
   // on create question initailValues are null
   if (isEmpty(initialValues)) {
     res = await axios.post("/api/questions", values);
-    // on update question the delta is sent to be updated
   } else {
+    // on update question the delta is sent to be updated
     res = await axios.put(
       `/api/questions/${values._id}`,
       difference(values, initialValues)

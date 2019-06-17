@@ -9,8 +9,11 @@ require("./models/Course");
 require("./models/Question");
 require("./services/passport");
 
+//db
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+//express
 const app = express();
+//middleware
 app.use(bodyParser.json());
 app.use(
   cookieSession({
@@ -21,6 +24,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//require the routes
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/coursesRoutes")(app);
@@ -38,5 +42,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+//on production mode .PORT will be populated
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

@@ -1,7 +1,13 @@
+//@flow
 import React from "react";
 import { Link } from "react-router-dom";
 
 import "./SideBar.css";
+
+/**
+ * @file Component which represent the admin side bar
+ * @module SideBar
+ */
 
 export const SideBar = () => {
   return (
@@ -31,6 +37,14 @@ export const SideBar = () => {
                 to="/admin-dashboard/user-panel"
               >
                 Users
+              </Link>
+            </li>
+            <li className="nav-item sidebar-nav-item">
+              <Link
+                className="nav-link text-muted"
+                to="/admin-dashboard/course-panel"
+              >
+                Courses
               </Link>
             </li>
           </ul>
