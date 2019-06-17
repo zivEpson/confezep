@@ -25,12 +25,10 @@ export const FilterQuestionsForm = (props: Props) => {
     return _.map(
       FormFields,
       ({ key, name, displayOnFilter, label, type, selectOptions }) => {
-        // There are form fields which shouldn't be displayed on filter panel
         if (displayOnFilter === true) {
           return (
             <div key={key} className="col-3">
               <Field
-                //use the component FormFieldByType
                 component={FormFieldByType}
                 type={type}
                 name={name}

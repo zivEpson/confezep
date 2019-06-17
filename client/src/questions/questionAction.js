@@ -85,9 +85,8 @@ export const deleteQuestion = (id: any, hideRowFunc: Function) => (
 
 /**
  * Get question from DB according to question id.
- * @param id
  */
-export const getQuestion = (id: any) => async (dispatch: Function) => {
+export const getQuestion = (id: Object) => async (dispatch: Function) => {
   if (id !== null) {
     dispatch({ type: REQUEST_QUESTION });
     const res = await axios.get(`/api/questions/${id}`);

@@ -1,3 +1,4 @@
+// @flow
 import axios from "axios";
 import { difference } from "../utils/utils";
 
@@ -9,7 +10,15 @@ import {
   CLEAR_USER
 } from "../actions/types";
 
-export const fetchUsers = values => async dispatch => {
+/**
+ * @file user redux-actions library. Send data from the application to the redux store. The data is sent using dispatch (redux method).
+ * @module userAction
+ */
+
+/**
+ * Fetch users from DB according to the given question params
+ */
+export const fetchUsers = (values: Object) => async (dispatch: Function) => {
   const res = await axios.get("/api/users", {
     params: {
       name: values["name"]
@@ -18,11 +27,17 @@ export const fetchUsers = values => async dispatch => {
   dispatch({ type: FETCH_USERS, payload: res.data });
 };
 
-export const clearUsers = () => async dispatch => {
+/**
+ * clear users from the user reducer
+ */
+export const clearUsers = () => async (dispatch: Function) => {
   dispatch({ type: CLEAR_USERS });
 };
 
-export const getUser = id => async dispatch => {
+/**
+ * Get user from DB according to user id.
+ */
+export const getUser = (id: Object) => async (dispatch: Function) => {
   if (id !== null) {
     dispatch({ type: REQUEST_USER });
     const res = await axios.get(`/api/users/${id}`);
@@ -32,11 +47,16 @@ export const getUser = id => async dispatch => {
   }
 };
 
-export const submitUser = (values, initialValues) => async dispatch => {
+/**
+ * Submit user to the DB. Modal with DB status is provided.
+ */
+export const submitUser = (values: Object, initialValues: Object) => async (
+  dispatch: Function
+) => {
   let res;
   if (initialValues === null) {
     res = await axios.post("/api/users", values);
-    // on update question the delta is sent to be updated
+    // on update user the delta is sent to be updated
   } else {
     res = await axios.put(
       `/api/users/${values._id}`,
@@ -45,7 +65,10 @@ export const submitUser = (values, initialValues) => async dispatch => {
   }
 };
 
-export const deleteUser = id => async dispatch => {
+/**
+ * Delete user according to user id
+ */
+export const deleteUser = (id: Object) => async (dispatch: Function) => {
   dispatch({
     type: "SHOW_MODAL",
     modalType: "DELETE_MODAL",

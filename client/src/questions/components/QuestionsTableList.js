@@ -5,6 +5,11 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { columns, selectRow } from "../constants/QuestionTableConstants";
 import TableButtons from "../../utils/TableUtils/TableButtons";
 
+/**
+ * @file component which desiplay the question table
+ * @module QuestionsTableList
+ */
+
 type Props = {
   //questionAction - delete question by id
   deleteFunc: Function,

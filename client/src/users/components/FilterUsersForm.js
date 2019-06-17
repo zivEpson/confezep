@@ -1,3 +1,4 @@
+// @flow
 import _ from "lodash";
 import React from "react";
 import { Field } from "redux-form";
@@ -6,9 +7,20 @@ import FormFields from "../constants/FormFields";
 import FormFieldByType from "../../utils/FormUtils/FormFieldByType";
 
 /**
- * Search panel for users
+ * @file Display the user filter panel
+ * @module FilterQuestionsForm
  */
-function FilterUsersForm({ handleSubmit, onSubmit }) {
+
+type Props = {
+  //redux-form - handles the form's submission.
+  handleSubmit: Function,
+  //userAction - fetchUsers by search criteria
+  onSubmit: Function
+};
+
+function FilterUsersForm(props: Props) {
+  const { handleSubmit, onSubmit } = props;
+
   const renderFields = () => {
     return _.map(FormFields, ({ key, name, displayOnFilter, label, type }) => {
       if (displayOnFilter === true) {

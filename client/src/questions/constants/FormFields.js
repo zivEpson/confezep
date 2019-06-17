@@ -4,7 +4,7 @@ import RenderCodeBlock from "../components/RenderCodeBlock";
 import RenderHints from "../components/RenderHints";
 
 /**
- * @file contains setup for all question module form fields. type, name, label, etc.
+ * @file contains setup for all question module form fields. type, name, label, etc'.
  * @module formFields
  * @export FieldArrayMap
  */

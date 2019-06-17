@@ -6,7 +6,7 @@ import QuestionBody from "./QuestionDisplay";
 import FormReviewButtons from "../../utils/FormUtils/FormReviewButtons";
 
 /**
- * @file after createing/viewing/updating the question, the component allow the question creator to view the question as the user will view it.
+ * @file after creating/viewing/updating the question, the component allow the question creator to view the question as the user will view it.
  * @module QuestionFormReview
  */
 

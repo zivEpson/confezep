@@ -29,8 +29,8 @@ type Props = {
   history: Object,
   //questionAction - Submit question to the DB
   submitQuestion: Function,
-  //QuestionReducer - indicates if DB operation is going
-  isFetching: Function
+  //Reducer - indicates if DB operation is going
+  isFetching: Boolean
 };
 
 type State = {
@@ -43,7 +43,7 @@ class QuestionContainer extends Component<Props, State> {
     showFormReview: false
   };
 
-  //When Module is first loaded. question id param is searched, if exists then question is fetched from the DB by the ID.
+  //When Module is first loaded. question id param is searched, if exists then question is fetched from the DB by the id.
   componentDidMount() {
     const { params } = this.props.match;
     if (!isEmpty(params)) {
@@ -64,6 +64,7 @@ class QuestionContainer extends Component<Props, State> {
 
     //get the mode of the current flow from query string
     const mode = getModelMode(location.search);
+
     if (!this.state.showFormReview) {
       return (
         // create screen

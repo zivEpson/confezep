@@ -1,3 +1,10 @@
+//@flow
+
+/**
+ * @file contains setup for all user module form fields. type, name, label, etc'.
+ * @module formFields
+ */
+
 export default [
   {
     key: 1,
