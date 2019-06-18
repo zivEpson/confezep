@@ -1,3 +1,10 @@
+//@flow
+/**
+ * @file setup for modal. size,margin,etc'.
+ * @module modalConstants
+ * @export customStyles
+ */
+
 export const customStyles = {
   content: {
     top: "50%",

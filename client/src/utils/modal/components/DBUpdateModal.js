@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { connect } from "react-redux";
 
@@ -5,10 +6,22 @@ import ReactModalTemplate from "./ReactModalTemplate";
 import { hideModal } from "../modalActions";
 
 /**
- *
- * @todo - need to add onReturn
+ * @file Generic update modal.
+ * @module DBUpdateModal
  */
-const DBUpdateModal = ({ hideModal, modelName, onReturn }) => {
+
+type Props = {
+  //modalAction - hide the modal after the process.
+  hideModal: Function,
+  //Indicate where to return after
+  onReturn: Function,
+  //model name - question/course/user
+  modelName: string
+};
+
+const DBUpdateModal = (props: Props) => {
+  const { hideModal, modelName, onReturn } = props;
+
   const onModalReturn = () => {
     onReturn();
     hideModal();

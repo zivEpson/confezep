@@ -1,13 +1,34 @@
+// @flow
 import React from "react";
 import { connect } from "react-redux";
 
 import ReactModalTemplate from "./ReactModalTemplate";
 import { hideModal } from "../modalActions";
 
-const DeleteModal = ({ hideModal, modelId, deleteFunc, hideRowFunc }) => {
+/**
+ * @file Generic delete modal.
+ * @module DBUpdateModal
+ */
+
+type Props = {
+  //modalAction - hide the modal after the process.
+  hideModal: Function,
+  //function to hide the row on the table of the deleted item
+  hideRowFunc: Function,
+  //model delete function to remove the value from db for example :deleteQuestion
+  deleteFunc: Function,
+  //the object id to delete
+  modelId: Object
+};
+
+const DeleteModal = (props: Props) => {
+  const { hideModal, modelId, deleteFunc, hideRowFunc } = props;
   const onDelete = () => {
+    //delete from DB
     deleteFunc(modelId);
+    //delete the row on the table
     hideRowFunc(modelId);
+    //hide the modal
     hideModal();
   };
 
