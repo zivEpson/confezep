@@ -20,19 +20,26 @@ import {
 export const submitCourse = (
   values: Object,
   initialValues: Object,
+  list: [Object],
   onReturn: Function
 ) => async (dispatch: Function) => {
   let res;
+
+  values.questions = list;
   // on create course initailValues are null
   if (isEmpty(initialValues)) {
-    console.log("course action", values);
     res = await axios.post("/api/courses", values);
   } else {
     // on update question the delta is sent to be updated
-    res = await axios.put(
-      `/api/courses/${values._id}`,
-      difference(values, initialValues)
-    );
+    /**
+     * @todo - change this to proper update
+     */
+    res = await axios.put(`/api/courses/${values._id}`, {
+      name: values.name,
+      description: values.description,
+      _questions: values.questions,
+      dateCreated: Date.now()
+    });
   }
 
   // show modal

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var deepPopulate = require("mongoose-deep-populate")(mongoose);
 
 const Course = mongoose.model("course");
 const utils = require("../utils/Utils");
@@ -13,12 +14,13 @@ module.exports = app => {
    * create a new course on db
    */
   app.post("/api/courses", async (req, res) => {
-    const { name, description } = req.body;
-    console.log(req.body);
+    const { name, description, questions } = req.body;
+
     const course = new Course({
       name: name,
       description: description,
-      dateCreated: Date.now(),
+      _questions: questions,
+      dateModified: Date.now(),
       _user: req.user.id
     });
     try {
@@ -30,12 +32,29 @@ module.exports = app => {
   });
 
   /**
+   * Update a single course
+   */
+  app.put("/api/courses/:id", async (req, res) => {
+    console.log(req.body);
+    if (req.params.id === null) {
+      res.sendStatus(400);
+    } else {
+      try {
+        await Course.findByIdAndUpdate(req.params.id, {
+          $set: req.body
+        });
+        res.sendStatus(200);
+      } catch (err) {
+        res.sendStatus(500);
+      }
+    }
+  });
+
+  /**
    * fetch courses by filter params
    */
   app.get("/api/courses", async (req, res) => {
     const query = buildQueryObject(req);
-
-    console.log(query);
 
     if (utils.isEmpty(query)) {
       res.sendStatus(400);
@@ -43,6 +62,7 @@ module.exports = app => {
       try {
         const courses = await Course.find(query)
           .populate("_user")
+          .populate("_questions", "title")
           .exec();
         res.send(courses);
       } catch (err) {
@@ -63,6 +83,7 @@ module.exports = app => {
           _id: req.params.id
         })
           .populate("_user")
+          .populate("_questions", "title")
           .exec();
         res.send(course);
       } catch (err) {

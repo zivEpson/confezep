@@ -17,19 +17,44 @@ type Props = {
   //questionAction - Delete question according to question id
   deleteQuestion: Function,
   // returend data from the DB
-  questions: [Object]
+  questions: [Object],
+  //indicate whether this component was called from create course
+  isCalledFromCourse: boolean,
+  //handlerFunction - used by course module to add a question
+  handlerFunction: Function,
+  //method to add new question to course
+  courseAddQuestionFunc: Function,
+  //method to remove questions from course
+  courseRemoveQuestionFunc: Function
 };
 
 class QuestionsPanelContainer extends Component<Props> {
   render() {
-    const { fetchQuestions, deleteQuestion, questions } = this.props;
+    const {
+      fetchQuestions,
+      deleteQuestion,
+      questions,
+      isCalledFromCourse,
+      handlerFunction,
+      courseAddQuestionFunc,
+      courseRemoveQuestionFunc
+    } = this.props;
     return (
       <div className="mt-4">
         {/*search panel*/}
-        <FilterQuestionForm onSubmit={fetchQuestions} />
+        <FilterQuestionForm
+          onSubmit={fetchQuestions}
+          isCalledFromCourse={isCalledFromCourse}
+          courseAddQuestionFunc={courseAddQuestionFunc}
+          courseRemoveQuestionFunc={courseRemoveQuestionFunc}
+        />
         <hr className="my-5" />
         {/*table panel*/}
-        <QuestionsTableList questions={questions} deleteFunc={deleteQuestion} />
+        <QuestionsTableList
+          questions={questions}
+          deleteFunc={deleteQuestion}
+          handlerFunction={handlerFunction}
+        />
       </div>
     );
   }

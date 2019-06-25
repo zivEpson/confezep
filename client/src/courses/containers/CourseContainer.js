@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { submitCourse, getCourse } from "../courseAction";
 import { ConnectedCreateCourseForm as CourseForm } from "../redux-form/ReduxConnectedCourse";
+import { ConnectedCreateCourseQuestionList as CourseQuestionList } from "../redux-form/ReduxConnectedCourse";
 import { getModelMode } from "../../utils/FormUtils/FormUtils";
 import LoadingSpinner from "../../utils/LoadinSpinner/LoadingSpinner";
 import { isEmpty } from "../../utils/utils";
@@ -31,7 +32,13 @@ type Props = {
   //Reducer - indicates if DB operation is going
   isFetching: Boolean
 };
-class CourseContainer extends Component<Props> {
+
+type State = {
+  //Indicate if to show the quetion review screen or the create screen
+  page: number
+};
+
+class CourseContainer extends Component<Props, State> {
   //When Module is first loaded. question id param is searched, if exists then question is fetched from the DB by the id.
   componentDidMount() {
     const { params } = this.props.match;
@@ -56,12 +63,14 @@ class CourseContainer extends Component<Props> {
 
     return (
       // create screen
-      <CourseForm
-        initialValues={initialValues}
-        mode={mode}
-        onCancel={history.goBack}
-        onSubmit={submitCourse}
-      />
+      <div>
+        <CourseForm
+          initialValues={initialValues}
+          mode={mode}
+          onCancel={history.goBack}
+          onSubmit={submitCourse}
+        />
+      </div>
     );
   }
 

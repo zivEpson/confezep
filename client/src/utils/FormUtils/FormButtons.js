@@ -6,7 +6,18 @@ import React from "react";
  * @module FormButtons
  */
 
-const FormButtons = ({ onCancel }) => {
+type Props = {
+  //on cancel form function
+  onCancel: Function,
+  //negative name - for example: cancel
+  negativeName: string,
+  //positive name - for example: Next, Submit
+  positiveName: string
+};
+
+const FormButtons = (props: Props) => {
+  const { onCancel, negativeName, positiveName } = props;
+
   return (
     <div className="text-center">
       <button
@@ -14,10 +25,10 @@ const FormButtons = ({ onCancel }) => {
         className="btn btn-outline-warning text-center mr-2"
         type="button"
       >
-        Cancel
+        {negativeName}
       </button>
       <button className="btn btn-outline-success text-center " type="submit">
-        Next
+        {positiveName}
       </button>
     </div>
   );

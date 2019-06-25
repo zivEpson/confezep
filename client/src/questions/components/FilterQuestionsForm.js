@@ -15,11 +15,44 @@ type Props = {
   //redux-form - handles the form's submission.
   handleSubmit: Function,
   //questionAction - fetchQuestions by search criteria
-  onSubmit: Function
+  onSubmit: Function,
+  //indicate whether this component was called from create course
+  isCalledFromCourse: boolean,
+  //method to add new question to course
+  courseAddQuestionFunc: Function,
+  //method to remove questions from course
+  courseRemoveQuestionFunc: Function
 };
 
 export const FilterQuestionsForm = (props: Props) => {
-  const { handleSubmit, onSubmit } = props;
+  const {
+    handleSubmit,
+    onSubmit,
+    isCalledFromCourse,
+    courseAddQuestionFunc,
+    courseRemoveQuestionFunc
+  } = props;
+
+  const renderCourseButtons = () => {
+    return (
+      <div>
+        <button
+          onClick={() => courseAddQuestionFunc()}
+          className="btn btn-light"
+          type="button"
+        >
+          Add
+        </button>
+        <button
+          onClick={() => courseRemoveQuestionFunc()}
+          className="btn btn-light"
+          type="button"
+        >
+          Remove
+        </button>
+      </div>
+    );
+  };
 
   const renderFields = () => {
     return _.map(
@@ -47,9 +80,12 @@ export const FilterQuestionsForm = (props: Props) => {
     <div>
       <form onSubmit={handleSubmit(value => onSubmit(value))}>
         <div className="form-row">{renderFields()}</div>
-        <button className="btn btn-light" type="submit">
-          Filter
-        </button>
+        <div className={"row"}>
+          <button className="btn btn-light ml-3" type="submit">
+            Filter
+          </button>
+          {isCalledFromCourse ? renderCourseButtons() : null}
+        </div>
       </form>
     </div>
   );

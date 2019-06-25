@@ -6,12 +6,10 @@ const { Schema } = mongoose;
  * @module courseSchema
  */
 
-// create a subdocument of {order: Number, question {{ type: Schema.Types.ObjectId, ref: "Question" }}}. allow you to set the order of the question.
-// _questionsIds: [{ type: Schema.Types.ObjectId, ref: "Question" }],
-
 const courseSchema = new Schema({
   name: String,
   description: String,
+  _questions: [{ type: Schema.Types.ObjectId, ref: "question" }],
   dateCreated: Date,
   dateModified: Date,
   _user: { type: Schema.Types.ObjectId, ref: "users" }

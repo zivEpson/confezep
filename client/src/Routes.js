@@ -89,7 +89,7 @@ const Routes = () => {
                 <Route
                   exact
                   path="/admin-dashboard/new-course"
-                  component={Users}
+                  component={Courses}
                 />
                 <Route component={NotFound} />
               </Switch>

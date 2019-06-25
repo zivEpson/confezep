@@ -27,7 +27,11 @@ const QuestionForm = (props: Props) => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderFormFields(FormFields, FieldArrayMap, mode)}
-        <FormButtons onCancel={onCancel} />
+        <FormButtons
+          onCancel={onCancel}
+          negativeName={"Cancel"}
+          positiveName={"Next"}
+        />
       </form>
     </div>
   );
