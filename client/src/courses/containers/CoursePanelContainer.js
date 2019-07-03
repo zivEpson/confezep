@@ -24,7 +24,7 @@ class CoursePanelContainer extends Component<Props> {
   render() {
     const { fetchCourses, deleteCourse, courses } = this.props;
     return (
-      <div className="mt-4">
+      <div>
         {/*search panel*/}
         <CoursesFilterForm onSubmit={fetchCourses} />
         <hr className="my-5" />

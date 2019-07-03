@@ -1,5 +1,8 @@
+//@flow
 import React from "react";
 import { Link } from "react-router-dom";
+
+import "./header.css";
 
 export const Header = ({ auth }) => {
   const renderContent = () => {
@@ -9,7 +12,7 @@ export const Header = ({ auth }) => {
       case false:
         return (
           <li className="nav-item">
-            <a href="/auth/google" className="nav-link">
+            <a href="/auth/google" className="nav-link ">
               Login With Google
             </a>
           </li>
@@ -17,7 +20,7 @@ export const Header = ({ auth }) => {
       default:
         return [
           <li key="3" className="nav-item">
-            <a href="/api/logout" className="nav-link">
+            <a href="/api/logout" className="nav-link ">
               Logout
             </a>
           </li>
@@ -26,7 +29,7 @@ export const Header = ({ auth }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand navbar-light border-bottom border-success ">
+    <nav className="navbar sticky-top navbar-expand navbar-light border-bottom shadow-sm">
       <div className="container">
         <Link
           to={auth ? "/admin-dashboard/admin-home" : "/"}

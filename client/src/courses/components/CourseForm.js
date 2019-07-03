@@ -60,7 +60,7 @@ const CourseForm = (props: Props) => {
   const removeQuestion = () => {};
 
   return (
-    <div>
+    <div className="my-4">
       <form
         onSubmit={handleSubmit(values => {
           onSubmit(values, initialValues, list, onCancel);

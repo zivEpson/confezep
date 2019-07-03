@@ -40,7 +40,7 @@ class QuestionsPanelContainer extends Component<Props> {
       courseRemoveQuestionFunc
     } = this.props;
     return (
-      <div className="mt-4">
+      <div>
         {/*search panel*/}
         <FilterQuestionForm
           onSubmit={fetchQuestions}

@@ -14,12 +14,14 @@ import { default as UserPanel } from "./users/containers/UsersPanelContainer";
 import { default as Courses } from "./courses/containers/CourseContainer";
 import { default as CoursesPanel } from "./courses/containers/CoursePanelContainer";
 
+import "./routes.css";
+
 const Routes = () => {
   const showAdminSideBar = () => {
     const isAdmin = new RegExp("/admin-dashboard/", "i");
     if (isAdmin.exec(window.location.pathname)) {
       return (
-        <div className="col-2">
+        <div className="col-2" id="sidebar-wrapper" >
           <SideBar />
         </div>
       );
@@ -33,7 +35,7 @@ const Routes = () => {
         <div className="container-fluid">
           <div className="row">
             {showAdminSideBar()}
-            <div className="col">
+            <div className="col" id="maincontent-wrapper">
               <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route

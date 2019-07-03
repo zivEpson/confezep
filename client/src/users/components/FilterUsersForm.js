@@ -25,7 +25,7 @@ function FilterUsersForm(props: Props) {
     return _.map(FormFields, ({ key, name, displayOnFilter, label, type }) => {
       if (displayOnFilter === true) {
         return (
-          <div key={key} className="col-3">
+          <div key={key} className="col-3 mt-4">
             <Field
               component={FormFieldByType}
               type={type}

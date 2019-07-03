@@ -5,4 +5,6 @@
 
 #full-size-sidebar {
   height: 100%;
+	vertical-align: top;
+	overflow: auto;
 }

@@ -27,7 +27,7 @@ class UsersPanelContainer extends Component<Props> {
       <div>
         {/*search panel*/}
         <FilterUserForm onSubmit={fetchUsers} />
-        <hr className="mt-5" />
+        <hr className="my-5" />
         {/*table panel*/}
         <UsersTableList users={users} deleteFunc={deleteUser} />
       </div>

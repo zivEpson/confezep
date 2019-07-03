@@ -24,7 +24,7 @@ type Props = {
 const QuestionForm = (props: Props) => {
   const { handleSubmit, onSubmit, onCancel, mode } = props;
   return (
-    <div>
+    <div className="my-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderFormFields(FormFields, FieldArrayMap, mode)}
         <FormButtons
