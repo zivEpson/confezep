@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "react-select";
+
 /**
  * @file redux-form select box
  * @module RFReactSelect
@@ -10,6 +11,34 @@ import Select from "react-select";
 RFReactSelect.defaultProps = {
   multi: false,
   className: ""
+};
+const colourStyles = {
+  singleValue: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+    ...styles,
+    color: isDisabled ? "#495057" : "#6c757d",
+    fontSize: "1rem"
+  }),
+  control: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+    ...styles,
+    backgroundColor: isDisabled ? "#e9ecef" : "#FFF",
+    color: isDisabled ? "#FFF!important" : "#FFF",
+    border: "1px solid #ced4da",
+    "&:hover": {
+      borderColor: null
+    },
+    boxShadow: "none"
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      backgroundColor: isDisabled ? "#e9ecef" : "#fff",
+      color: "#495057",
+      cursor: isDisabled ? "not-allowed" : "default",
+      "&:hover": {
+        backgroundColor: "#E3DBDB"
+      }
+    };
+  }
 };
 
 export default function RFReactSelect({
@@ -34,7 +63,8 @@ export default function RFReactSelect({
       }
       onBlur={() => onBlur(value)}
       onFocus={onFocus}
-      className={className}
+      styles={colourStyles}
+      placeholder={"Selectcds"}
     />
   );
 }

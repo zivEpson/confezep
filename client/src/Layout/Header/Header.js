@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 
 import "./header.css";
 
-export const Header = ({ auth }) => {
+type Props = {
+  auth: Object
+};
+
+export const Header = (props: Props) => {
+  const { auth } = props;
+
   const renderContent = () => {
     switch (auth) {
       case null:
