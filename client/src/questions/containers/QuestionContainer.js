@@ -87,9 +87,7 @@ class QuestionContainer extends Component<Props, State> {
           // on return user will return for the last route from history
           onReturn={history.goBack}
           // on cancel user will return to create screen
-          onCancel={() => {
-            this.setState({ showFormReview: false });
-          }}
+          onCancel={history.goBack}
           mode={mode}
         />
       );

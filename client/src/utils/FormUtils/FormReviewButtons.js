@@ -62,7 +62,7 @@ function FormReviewButtons(props: Props) {
   return (
     <div className="text-center mt-3">
       <button onClick={onCancel} className="btn btn-outline-warning mr-2">
-        Back
+        {mode === "view" ? "Return" : "Cancel"}
       </button>
       {renderButton()}
     </div>

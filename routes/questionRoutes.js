@@ -69,16 +69,20 @@ module.exports = app => {
   });
 
   /**
-   * Update a single question
+   * Update a single question -- dateModified
    */
   app.put("/api/questions/:id", async (req, res) => {
     if (req.params.id === null) {
       res.sendStatus(400);
     } else {
       try {
-        await Question.findByIdAndUpdate(req.params.id, {
-          $set: req.body
-        });
+        await Question.updateOne(
+          {_id: req.params.id},
+          {
+            $set:req.body,
+            dateModified: Date.now()
+          }
+        );
         res.sendStatus(200);
       } catch (err) {
         res.sendStatus(500);

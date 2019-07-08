@@ -18,11 +18,11 @@ type Props = {
   //Router - history.goBack
   onCancel: Function,
   //the current flow mode - create/update/view
-  mode: String
+  mode: String,
 };
 
 const QuestionForm = (props: Props) => {
-  const { handleSubmit, onSubmit, onCancel, mode } = props;
+  const { handleSubmit, onSubmit, onCancel, mode} = props;
   return (
     <div className="my-4">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -30,7 +30,7 @@ const QuestionForm = (props: Props) => {
         <FormButtons
           onCancel={onCancel}
           negativeName={"Cancel"}
-          positiveName={"Next"}
+          positiveName={mode === "view"? "Next":"Save & Next"}
         />
       </form>
     </div>
