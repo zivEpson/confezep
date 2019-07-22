@@ -31,6 +31,7 @@ const QuestionForm = (props: Props) => {
           onCancel={onCancel}
           negativeName={"Cancel"}
           positiveName={mode === "view"? "Next":"Save & Next"}
+          singleButton = {false}
         />
       </form>
     </div>
