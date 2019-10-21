@@ -6,6 +6,7 @@ import { default as Header } from "./Layout/Header/HeaderContainer";
 import Landing from "./Layout/Landing";
 import NotFound from "./Layout/NotFound";
 import { default as SideBar } from "./Layout/SideBar/SideBarContainer";
+import { default as UserSideBar } from "./Layout/user-side-bar/UserSideBarContainer";
 import { default as QuestionsPanel } from "./questions/containers/QuestionsPanelContainer";
 import AdminHome from "./Layout/AdminHome";
 import { default as Question } from "./questions/containers/QuestionContainer";
@@ -13,16 +14,25 @@ import { default as Users } from "./users/containers/UserContainer";
 import { default as UserPanel } from "./users/containers/UsersPanelContainer";
 import { default as Courses } from "./courses/containers/CourseContainer";
 import { default as CoursesPanel } from "./courses/containers/CoursePanelContainer";
+import { default as UserPage } from "./user-subscription/containers/UserSubscriptionsContainer";
+import { default as UserCourses } from "./user-subscription/containers/UserCoursesContainer";
 
 import "./routes.css";
 
 const Routes = () => {
   const showAdminSideBar = () => {
     const isAdmin = new RegExp("/admin-dashboard/", "i");
+    const isUsern = new RegExp("/user-dashboard/", "i");
     if (isAdmin.exec(window.location.pathname)) {
       return (
-        <div className="col-2" id="sidebar-wrapper" >
+        <div className="col-2" id="sidebar-wrapper">
           <SideBar />
+        </div>
+      );
+    } else if (isUsern.exec(window.location.pathname)) {
+      return (
+        <div className="col-2" id="sidebar-wrapper">
+          <UserSideBar />
         </div>
       );
     }
@@ -92,6 +102,16 @@ const Routes = () => {
                   exact
                   path="/admin-dashboard/new-course"
                   component={Courses}
+                />
+                <Route
+                  exact
+                  path="/user-dashboard/user-home"
+                  component={UserPage}
+                />
+                <Route
+                  exact
+                  path="/user-dashboard/course-panel"
+                  component={UserCourses}
                 />
                 <Route component={NotFound} />
               </Switch>

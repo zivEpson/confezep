@@ -23,21 +23,11 @@ type Props = {
   onCancel: Function,
   //the current flow mode - create/update/view
   mode: String,
-  array: Function,
-  initialValues: Object,
-  onReturnFromModal: Function
+  initialValues: Object
 };
 
 const CourseForm = (props: Props) => {
-  const {
-    handleSubmit,
-    onSubmit,
-    onCancel,
-    mode,
-    array,
-    initialValues,
-    onReturnFromModal
-  } = props;
+  const { handleSubmit, onSubmit, onCancel, mode, initialValues } = props;
 
   //empty initial state
   const [record, setRecord] = useState({});

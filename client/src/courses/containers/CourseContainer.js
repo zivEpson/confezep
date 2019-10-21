@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import { submitCourse, getCourse } from "../courseAction";
 import { ConnectedCreateCourseForm as CourseForm } from "../redux-form/ReduxConnectedCourse";
-import { ConnectedCreateCourseQuestionList as CourseQuestionList } from "../redux-form/ReduxConnectedCourse";
 import { getModelMode } from "../../utils/FormUtils/FormUtils";
 import LoadingSpinner from "../../utils/LoadinSpinner/LoadingSpinner";
 import { isEmpty } from "../../utils/utils";
@@ -50,13 +49,7 @@ class CourseContainer extends Component<Props, State> {
   }
 
   renderContent() {
-    const {
-      initialValues,
-      formValues,
-      location,
-      history,
-      submitCourse
-    } = this.props;
+    const { initialValues, location, history, submitCourse } = this.props;
 
     //get the mode of the current flow from query string
     const mode = getModelMode(location.search);

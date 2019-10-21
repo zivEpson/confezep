@@ -5,7 +5,6 @@ const { Schema } = mongoose;
  * @file question module schema setup
  * @module questionSchema
  */
-
 const questionSchema = new Schema({
   title: String,
   body: String,

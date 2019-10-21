@@ -34,8 +34,8 @@ class QuestionsPanelContainer extends Component<Props> {
       fetchQuestions,
       deleteQuestion,
       questions,
-      isCalledFromCourse,
       handlerFunction,
+      isCalledFromCourse,
       courseAddQuestionFunc,
       courseRemoveQuestionFunc
     } = this.props;

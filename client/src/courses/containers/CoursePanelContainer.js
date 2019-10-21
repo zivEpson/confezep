@@ -8,7 +8,7 @@ import { fetchCourses, deleteCourse } from "../courseAction";
 
 /**
  * @file Entry point for displaying filter questions panel and table.
- * @module QuestionsPanelContainer
+ * @module CoursePanelContainer
  */
 
 type Props = {
@@ -17,19 +17,40 @@ type Props = {
   //courseAction - Delete course according to course id
   deleteCourse: Function,
   // returend data from the DB
-  courses: [Object]
+  courses: [Object],
+  handlerFunction: Function,
+  isCalledFromUserSubscription: Boolean,
+  userSubscriptionAddCourseFunc: Function,
+  userSubscriptionRemoveCourseFunc: Function
 };
 
 class CoursePanelContainer extends Component<Props> {
   render() {
-    const { fetchCourses, deleteCourse, courses } = this.props;
+    const {
+      fetchCourses,
+      deleteCourse,
+      courses,
+      handlerFunction,
+      isCalledFromUserSubscription,
+      userSubscriptionAddCourseFunc,
+      userSubscriptionRemoveCourseFunc
+    } = this.props;
     return (
       <div>
         {/*search panel*/}
-        <CoursesFilterForm onSubmit={fetchCourses} />
+        <CoursesFilterForm
+          onSubmit={fetchCourses}
+          isCalledFromUserSubscription={isCalledFromUserSubscription}
+          userSubscriptionAddCourseFunc={userSubscriptionAddCourseFunc}
+          userSubscriptionRemoveCourseFunc={userSubscriptionRemoveCourseFunc}
+        />
         <hr className="my-5" />
         {/*table panel*/}
-        <CoursesTableList deleteFunc={deleteCourse} courses={courses} />
+        <CoursesTableList
+          handlerFunction={handlerFunction}
+          deleteFunc={deleteCourse}
+          courses={courses}
+        />
       </div>
     );
   }

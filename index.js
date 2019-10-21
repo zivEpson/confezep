@@ -7,10 +7,13 @@ const keys = require("./config/keys");
 require("./models/User");
 require("./models/Course");
 require("./models/Question");
+require("./models/UserSubscriptions");
 require("./services/passport");
 
 //db
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+mongoose
+  .connect(keys.mongoURI, { useNewUrlParser: true })
+  .catch(error => console.log("Mogoose connection error"));
 //express
 const app = express();
 //middleware
@@ -30,6 +33,7 @@ require("./routes/billingRoutes")(app);
 require("./routes/coursesRoutes")(app);
 require("./routes/questionRoutes")(app);
 require("./routes/userRoutes")(app);
+require("./routes/userSubscriptionRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   // express will serve up production assets like main.js, or main.css.

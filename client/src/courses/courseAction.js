@@ -1,7 +1,7 @@
 // @flow
 import axios from "axios";
 
-import { isEmpty, difference } from "../utils/utils";
+import { isEmpty } from "../utils/utils";
 import {
   FETCH_COURSES,
   REQUEST_COURSE,

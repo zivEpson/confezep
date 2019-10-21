@@ -53,12 +53,11 @@ export const getUser = (id: Object) => async (dispatch: Function) => {
 export const submitUser = (values: Object, initialValues: Object) => async (
   dispatch: Function
 ) => {
-  let res;
   if (initialValues === null) {
-    res = await axios.post("/api/users", values);
+    await axios.post("/api/users", values);
     // on update user the delta is sent to be updated
   } else {
-    res = await axios.put(
+    await axios.put(
       `/api/users/${values._id}`,
       difference(values, initialValues)
     );

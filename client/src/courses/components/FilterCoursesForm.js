@@ -15,11 +15,45 @@ type Props = {
   //redux-form - handles the form's submission.
   handleSubmit: Function,
   //questionAction - fetchCourses by search criteria
-  onSubmit: Function
+  onSubmit: Function,
+  //indicate whether this component was called from user subscription
+  isCalledFromUserSubscription: boolean,
+  //method to add new course to user subscription
+  userSubscriptionAddCourseFunc: Function,
+  //method to remove course from user subscription
+  userSubscriptionRemoveCourseFunc: Function
 };
 
 const FilterCoursesForm = (props: Props) => {
-  const { handleSubmit, onSubmit } = props;
+  const {
+    handleSubmit,
+    onSubmit,
+    isCalledFromUserSubscription,
+    userSubscriptionAddCourseFunc,
+    userSubscriptionRemoveCourseFunc
+  } = props;
+
+  const renderUserSubscriptionButtons = () => {
+    return (
+      <div>
+        <button
+          onClick={() => userSubscriptionAddCourseFunc()}
+          className="btn btn-light"
+          type="button"
+        >
+          Add
+        </button>
+        <button
+          onClick={() => userSubscriptionRemoveCourseFunc()}
+          className="btn btn-light"
+          type="button"
+        >
+          Remove
+        </button>
+      </div>
+    );
+  };
+
   const renderFields = () => {
     return _.map(
       FormFields,
@@ -46,9 +80,14 @@ const FilterCoursesForm = (props: Props) => {
     <div>
       <form onSubmit={handleSubmit(value => onSubmit(value))}>
         <div className="form-row">{renderFields()}</div>
-        <button className="btn btn-light" type="submit">
-          Filter
-        </button>
+        <div className="ml-1 row">
+          <button className="btn btn-light" type="submit">
+            Filter
+          </button>
+          {isCalledFromUserSubscription
+            ? renderUserSubscriptionButtons()
+            : null}
+        </div>
       </form>
     </div>
   );

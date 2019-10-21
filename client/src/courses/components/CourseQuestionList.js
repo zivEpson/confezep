@@ -14,7 +14,7 @@ const CourseQuestionList = (props: Props) => {
   const { questionsList, setList } = props;
   //syncronize the state of the application
   const onDragEnd = result => {
-    const { destination, source, draggableId } = result;
+    const { destination, source } = result;
 
     //no destination,return
     if (!destination) {

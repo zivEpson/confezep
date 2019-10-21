@@ -14,17 +14,22 @@ type Props = {
   //courseAction - delete question by id
   deleteFunc: Function,
   //courses fetched from db.
-  courses: [Object]
+  courses: [Object],
+  //handlerFunction - used by user subscription module choose a course
+  handlerFunction: Function
 };
 
 const CoursesTableList = (props: Props) => {
-  const { courses, deleteFunc } = props;
+  const { courses, deleteFunc, handlerFunction } = props;
   // hooks - let you use state without writing a class.
   const [recordId, setRecordId] = useState(null);
   const [deletedRecordId, hideRow] = useState(null);
 
   const onSelect = (row: Object) => {
     setRecordId(row._id);
+    if (typeof handlerFunction !== "undefined") {
+      handlerFunction(row);
+    }
   };
   selectRow.onSelect = onSelect;
 
