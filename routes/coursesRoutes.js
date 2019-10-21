@@ -35,14 +35,17 @@ module.exports = app => {
    * Update a single course
    */
   app.put("/api/courses/:id", async (req, res) => {
-    console.log(req.body);
     if (req.params.id === null) {
       res.sendStatus(400);
     } else {
       try {
-        await Course.findByIdAndUpdate(req.params.id, {
-          $set: req.body
-        });
+        await Course.updateOne(
+          {_id: req.params.id}, 
+          {
+            $set: req.body,
+            dateModified: Date.now()
+          }
+        );
         res.sendStatus(200);
       } catch (err) {
         res.sendStatus(500);

@@ -39,7 +39,8 @@ class QuestionDisplay extends Component<Props> {
           <div className="card ">
             <div className="card-body font-weight-light">
               <p className="card-text">{formValues["body"]}</p>
-              <div className="card" style={{ border: "none" }}>
+              {/* display code only if it exsist*/}
+              { (formValues["bodyCode"] == null || formValues["bodyCode"].length === 0) ? null : <div className="card" style={{ border: "none" }}>
                 <div className="card-body">
                   <figure>
                     <pre>
@@ -49,7 +50,7 @@ class QuestionDisplay extends Component<Props> {
                     </pre>
                   </figure>
                 </div>
-              </div>
+              </div> }
             </div>
           </div>
 

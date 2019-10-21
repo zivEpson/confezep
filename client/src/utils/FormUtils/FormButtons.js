@@ -12,24 +12,40 @@ type Props = {
   //negative name - for example: cancel
   negativeName: string,
   //positive name - for example: Next, Submit
-  positiveName: string
+  positiveName: string,
+  // flow mode
+  singleButton: boolean 
 };
 
 const FormButtons = (props: Props) => {
-  const { onCancel, negativeName, positiveName } = props;
+  const { onCancel, negativeName, positiveName, singleButton } = props;
 
   return (
-    <div className="text-center">
+    <div>
+    {singleButton === true ? 
+      <div className="text-center">
       <button
         onClick={onCancel}
         className="btn btn-outline-warning text-center mr-2"
         type="button"
       >
-        {negativeName}
+        {"Return"}
       </button>
-      <button className="btn btn-outline-success text-center " type="submit">
-        {positiveName}
-      </button>
+    </div>
+    :
+      <div className="text-center">
+        <button
+          onClick={onCancel}
+          className="btn btn-outline-warning text-center mr-2"
+          type="button"
+        >
+          {negativeName}
+        </button>
+        <button className="btn btn-outline-success text-center " type="submit">
+          {positiveName}
+        </button>
+    </div>
+    }
     </div>
   );
 };

@@ -32,6 +32,7 @@ const UserForm = (props: Props) => {
           onCancel={onCancel}
           negativeName={"Cancel"}
           positiveName={"Next"}
+          singleButton = {false}
         />
       </form>
     </div>

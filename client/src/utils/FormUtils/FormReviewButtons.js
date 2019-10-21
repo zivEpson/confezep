@@ -1,6 +1,7 @@
 //@flow
 import React from "react";
 
+
 /**
  * @file generic buttons for review screen
  * @module FormReviewButtons
@@ -62,7 +63,7 @@ function FormReviewButtons(props: Props) {
   return (
     <div className="text-center mt-3">
       <button onClick={onCancel} className="btn btn-outline-warning mr-2">
-        Back
+        {mode === "view" ? "Return" : "Cancel"}
       </button>
       {renderButton()}
     </div>

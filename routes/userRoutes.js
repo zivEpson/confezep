@@ -49,9 +49,13 @@ module.exports = app => {
       res.sendStatus(400);
     } else {
       try {
-        await User.findByIdAndUpdate(req.params.id, {
-          $set: req.body
-        });
+        await User.updateOne(
+          {_id: req.params.id}, 
+          {
+            $set: req.body,
+            dateModified: Date.now()
+          }
+        );
         res.sendStatus(200);
       } catch (err) {
         res.sendStatus(500);

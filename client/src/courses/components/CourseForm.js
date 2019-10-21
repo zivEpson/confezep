@@ -43,9 +43,12 @@ const CourseForm = (props: Props) => {
   }, []);
 
   const addNewQuestion = () => {
-    const newArray = Array.from(list);
-    newArray.push(record);
-    setList(newArray);
+    //only new questions should be inserted to the course
+    if(!isEmpty(record) && !list.includes(record)){
+        const newArray = Array.from(list);
+        newArray.push(record);
+        setList(newArray);    
+    }
   };
   const removeQuestion = () => {};
 
@@ -63,15 +66,18 @@ const CourseForm = (props: Props) => {
           onCancel={onCancel}
           negativeName={"Cancel"}
           positiveName={"Submit"}
+          singleButton = {mode === "view" ? true : false}
         />
       </form>
-      <hr />
-      <QuestionsPanelContainer
-        handlerFunction={setRecord}
-        isCalledFromCourse={true}
-        courseAddQuestionFunc={addNewQuestion}
-        courseRemoveQuestionFunc={removeQuestion}
-      />
+      {mode === "view" ? null :<div>
+        <hr />
+        <QuestionsPanelContainer
+          handlerFunction={setRecord}
+          isCalledFromCourse={true}
+          courseAddQuestionFunc={addNewQuestion}
+          courseRemoveQuestionFunc={removeQuestion}
+        />
+      </div>}
     </div>
   );
 };
