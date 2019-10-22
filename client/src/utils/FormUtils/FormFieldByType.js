@@ -29,6 +29,7 @@ export const FormFieldByType = (props: Props) => {
     selectOptions,
     meta: { error, touched }
   } = props;
+
   const renderQuestionType = () => {
     if (type === "text") {
       return (
